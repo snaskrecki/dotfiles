@@ -1,0 +1,121 @@
+{
+  //
+  // show welcome page at startup :DDD
+  //
+  "workbench.startupEditor": "welcomePage",  
+  //
+  // telemetry
+  //
+  "telemetry.enableTelemetry": false,
+  "telemetry.enableCrashReporter": false,
+  //
+  // instead opening only user settings, open default also
+  //
+  "workbench.settings.useSplitJSON": true,
+  //
+  // editor.font
+  //
+  "editor.fontFamily": "Dejavu Sans Mono", // Ubuntu Mono, Dejavu Sans Mono
+  "editor.fontLigatures": false,
+  "editor.fontSize": 15,
+  "editor.fontWeight": "normal",
+  "editor.lineHeight": 0, // compute line height from font size
+  //
+  // editor.tabSize 
+  //
+  "editor.insertSpaces": true,
+  "editor.tabSize": 4,
+  "editor.detectIndentation": false,
+  //
+  // editor.rulers
+  //
+  "editor.rulers": [
+    80,
+    120
+  ],
+  //
+  // editor.wordWrap
+  //
+  "editor.wordWrap": "wordWrapColumn",
+  "editor.wordWrapColumn": 120,
+  //
+  // terminal.integrated.font
+  //
+  "terminal.integrated.fontFamily": "Dejavu Sans Mono",
+  "terminal.integrated.fontWeight": "normal",
+  "terminal.integrated.fontSize": 15,
+  "terminal.integrated.lineHeight": 0,
+  //
+  // set correct shell
+  //
+  "terminal.integrated.shell.linux": "/bin/bash",
+  //
+  // file specific settings
+  //
+  "[latex]": {
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true
+  },
+  "[html]": {
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true,
+  },
+  "[css]": {
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true,
+  },
+  "[makefile]": {
+    "editor.tabSize": 8,
+    "editor.insertSpaces": false
+  },
+  "[cpp]": {
+    "editor.wordBasedSuggestions": true,
+    "editor.suggest.insertMode": "replace",
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true
+  },
+  "[c]": {
+    "editor.wordBasedSuggestions": true,
+    "editor.suggest.insertMode": "replace",
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true
+  },
+  "[python]": {
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true
+  },
+  "[json]": {
+    "editor.quickSuggestions": {
+      "strings": true
+    },
+    "editor.suggest.insertMode": "replace",
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true
+  },
+  "[jsonc]": {
+    "editor.quickSuggestions": {
+      "strings": true
+    },
+    "editor.suggest.insertMode": "replace",
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true
+  },
+  //
+  // associate cuda source files with cpp syntax coloring
+  //
+  "files.associations": {
+    "*.cu": "cpp"
+  },
+  //
+  // C_Cpp settings
+  //
+  "C_Cpp.intelliSenseEngine": "Default",
+  "C_Cpp.loggingLevel": "Information",
+  "C_Cpp.clang_format_path": "/usr/bin/clang-format",
+  "C_Cpp.enhancedColorization": "Enabled",
+  "C_Cpp.intelliSenseEngineFallback": "Enabled",
+  //
+  // autosave
+  //
+  "files.autoSave": "onWindowChange"
+}
