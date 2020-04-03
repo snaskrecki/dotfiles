@@ -121,6 +121,33 @@ PROMPT_DIRTRIM=3
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
-alias ll='ls -l'
-alias rm='rm -i'
-alias emacs='emacs -nw'
+# custom aliases and exports
+# begin
+
+export WORKSPACE=~/my-data/personal/workspace
+export CS=~/my-data/personal/education/university/computer-science/courses/year02
+export VIMCONFIG=~/.config/nvim
+export VIMDATA=~/.local/share/nvim/undo
+export DOTFILES=~/develop/dotfiles
+
+alias ll="ls -l"
+alias la="ls -a"
+alias rm="rm -i"
+
+alias emacs="emacs -nw"
+alias cd_vf="cd $VIMCONFIG"
+alias cd_df="cd $DOTFILES"
+
+alias e_b="vim ~/.bashrc"
+alias e_v="vim $VIMCONFIG/init.vim"
+alias so_b="source ~/.bashrc"
+
+alias cd_ws="cd $WORKSPACE"
+alias cd_cs="cd $CS"
+
+alias vim="nvim"
+alias vi="nvim"
+
+alias xup="xrdb ~/.Xresources" # update Xresources
+
+# end
