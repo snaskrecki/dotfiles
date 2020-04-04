@@ -1,33 +1,19 @@
-" custom dotvim folder location
-" set runtimepath+=~/.config/vim,~/.config/vim/after
-
-" Don't try to be Vi compatible
-set nocompatible
-
-" Helps force plugins to load correctly when it is turned back on below
-filetype indent plugin on
-
-" Syntax recognition/highlighting
-syntax on
-
-"
-" vim-plug automatic installation
-"
-if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+" For a paranoia. ;;
+" Normally `:set nocp` is not needed, because it is done automatically
+" when .vimrc is found.
+if &compatible
+  " `:set nocp` has many side effects. Therefore this should be done
+  " only when 'compatible' is set.
+  set nocompatible
 endif
-"
-" Plugins activation
-"
-call plug#begin('~/.vim/bundle')
+
+" Specify a directory for plugins
+" - For Neovim: stdpath('data') . '/plugged'
+" - Avoid using standard Vim directory names like 'plugin'
+call plug#begin('~/.vim/plugged')
 
 " Solarized color theme
 Plug 'altercation/vim-colors-solarized'
-
-" Text centralization
-" Plug 'https://github.com/junegunn/goyo.vim.git'
 
 " Defaults everyone can agree on 
 Plug 'tpope/vim-sensible'
@@ -35,9 +21,6 @@ Plug 'tpope/vim-sensible'
 " Detailed info bar at the bottom
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-
-" Autocompletion tool
-" Plug 'valloric/youcompleteme'
 
 " Surround by tpope
 Plug 'tpope/vim-surround'
@@ -52,38 +35,65 @@ Plug 'tpope/vim-commentary'
 Plug 'kana/vim-textobj-entire'
 Plug 'kana/vim-textobj-user'
 
-" Monokai colorscheme available
-" Plug 'crusoexia/vim-monokai'
-
-" Gruvbox theme
-" Plug 'morhetz/gruvbox'
-
-" Dracula
-Plug 'dracula/vim', { 'as': 'dracula' }
-
 " File manager nerdtree
-" Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree'
+
+" [b, ]b for buffer nav etc.
+Plug 'tpope/vim-unimpaired'
 
 call plug#end()
-"
-" altercation/vim-colors-solarized settings
-"
-syntax enable
-set background=dark
-colorscheme solarized
-"
-" ycm settings 
-"
+
+" Some basics:
+nnoremap c "_c
+set nocompatible
+filetype plugin indent on
+syntax on
+set encoding=utf-8
+set number relativenumber
+
+" clipboard         Set clipboard provider
+set clipboard+=unnamedplus
+
+" Enable autocompletion:
+set wildmode=longest,list,full
+
+" Disables automatic commenting on newline:
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+
+" colorscheme       Sets favorite colorscheme
+" syntax            Use filewise syntax highlighting
+" background        Choose dark/light version of the color scheme
+syntax          enable
+set background =dark
+colorscheme     solarized
+
+" tabstop:          Width of tab character
+" softtabstop:      Fine tunes the amount of white space to be added
+" shiftwidth        Determines the amount of whitespace to add in normal mode
+" expandtab:        When on uses space instead of tabs
+set tabstop     =4
+set softtabstop =4
+set shiftwidth  =4
+set expandtab
+
+" <leader>          Custom leader key mapping
+map <leader>   ='\'
+
+nnoremap <leader>ev :e $MYVIMRC<cr>
+nnoremap <leader>sv :so $MYVIMRC<cr>
+nnoremap <leader>w :w<cr>
+
+inoremap {<cr> {<cr>}<esc>O<tab>
+
 " Preferring libclang over clangd
-let g:ycm_use_clangd = 0
 " Autoclosing preview window after completion
-let g:ycm_autoclose_preview_window_after_completion = 1
 " disbale preview
+" clang_complete settings
+let g:ycm_use_clangd = 0
+let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_add_preview_to_completeopt = 0
 set completeopt-=preview
-
-" clang_complete settings
-" let g:clang_library_path='/usr/lib/llvm-6.0/lib/libclang.so.1'
+let g:clang_library_path='/usr/lib/llvm-6.0/lib/libclang.so.1'
 
 " air-line
 let g:airline_powerline_fonts = 1
@@ -117,107 +127,32 @@ let g:airline_symbols.linenr = ''
 
 let g:airline#extensions#tabline#enabled = 1
 
-" custom mappings
-let mapleader ='\'
-" mapping saving file to \w
-noremap <leader>w :w<cr>
-" mapping split and edit vimrc to \ev
-nnoremap <leader>ev :vsplit $MYVIMRC<cr>
-"mapping sourcing vimrc to \sv
-nnoremap <leader>sv :source $MYVIMRC<cr>
-" buffer switching mappings
-nnoremap <silent> [b :bprevious<CR>
-nnoremap <silent> ]b :bnext<CR>
-nnoremap <silent> [B :bfirst<CR>
-nnoremap <silent> ]B :blast<CR>
 " expand '%%' shortcut to %:h in command mode
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 
-" 
 " NERDTree settings
-"
-map <leader>ntt :NERDTreeToggle<CR>
-
-"
-" Indentation settings (soft tabs / using spaces)
-"
-set expandtab " insert spaces when <tab> key is pressed
-set shiftwidth=4 " shift 4 spaces when pressing '<' or '>' keys
-set softtabstop=4 " backspace removes to previous tab position
-set smartindent " automatically indent following lines
+map <leader>n :NERDTreeToggle<cr>
 
 " Turn backup off, file with extensions .~, .bak, etc.
 set nobackup
 set nowritebackup
 set noswapfile
 
-" Disables automatic commenting on newline:
-autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
-
 " Status bar at the bottom
-" set laststatus=2
+set laststatus=2
 
 " show currently typed command "+p, 5d etc.
-" set showmode
+set showmode
 set showcmd
 
 " Blink cursor on error instead of beeping (grr)
 set visualbell
 
-" Relative numbering, show current line number
-set number 
-set relativenumber
-
 " Show current position on the bar below
 set ruler
 
-" Encoding
-set encoding=utf-8
-
-" Highlight searches (use <C-L> to temporarily turn off highlighting; see the
-" mapping of <C-L> below)
-" set hlsearch
-
-" Start highlighting current query
-" set incsearch
-
-" Map <C-L> (redraw screen) to also turn off search highlighting until the
-" next search
-" nnoremap <C-L> :nohl<CR><C-L>
-
-" When opening a new line and no filetype-specific indenting is enabled, keep
-" the same indent as the line you're currently on. Useful for READMEs, etc.
-" set autoindent
-
-" C-style indent
-" set cindent
-
 " Highlight current line
-" set cursorline
-
-" enable mouse
-set mouse=a
-
-
+set cursorline
 
 " <C-a>, <C-x> operates only in decimal system
 set nrformats=
-
-" cmdline_mode scrolling with <TAB>, zsh-like
-" set wildmenu
-set wildmode=full
-
-" number of items remembered in history 
-" set history=200
-
-" wrap too long lines for Markdown
-" set textwidth=0
-" set wrapmargin=0
-" set wrap
-" set linebreak 
-" set columns=80
-
-" visual changes
-" set numberwidth=6
-" set colorcolumn=80,100,120
-
