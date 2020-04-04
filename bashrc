@@ -126,8 +126,8 @@ PROMPT_DIRTRIM=3
 
 export WORKSPACE=~/my-data/personal/workspace
 export CS=~/my-data/personal/education/university/computer-science/courses/year02
-export VIMCONFIG=~/.config/nvim
-export VIMDATA=~/.local/share/nvim/undo
+export VIMCONFIG=~/.vim
+export VIMDATA=~/.vim
 export DOTFILES=~/develop/dotfiles
 
 alias ll="ls -l"
@@ -139,7 +139,7 @@ alias cd_vf="cd $VIMCONFIG"
 alias cd_df="cd $DOTFILES"
 
 alias e_b="vim ~/.bashrc"
-alias e_v="vim $VIMCONFIG/init.vim"
+alias e_v="vim $VIMCONFIG/vimrc"
 alias so_b="source ~/.bashrc"
 
 alias cd_ws="cd $WORKSPACE"

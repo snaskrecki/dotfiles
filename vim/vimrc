@@ -22,6 +22,10 @@ Plug 'tpope/vim-sensible'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
+" ctrl-p functionality
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+
 " Surround by tpope
 Plug 'tpope/vim-surround'
 
@@ -79,9 +83,10 @@ set expandtab
 " <leader>          Custom leader key mapping
 map <leader>   ='\'
 
-nnoremap <leader>ev :e $MYVIMRC<cr>
-nnoremap <leader>sv :so $MYVIMRC<cr>
+nnoremap <leader>ev :e ~/.vim/vimrc<cr>
+nnoremap <leader>sv :so ~/.vim/vimrc<cr>
 nnoremap <leader>w :w<cr>
+nnoremap <C-p> :<C-u>FZF<cr>
 
 inoremap {<cr> {<cr>}<esc>O<tab>
 
@@ -127,6 +132,8 @@ let g:airline_symbols.linenr = ''
 
 let g:airline#extensions#tabline#enabled = 1
 
+set guifont=Liberation\ Mono\ for\ Powerline\ 10 
+
 " expand '%%' shortcut to %:h in command mode
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 
@@ -149,10 +156,10 @@ set showcmd
 set visualbell
 
 " Show current position on the bar below
-set ruler
+" set ruler
 
 " Highlight current line
-set cursorline
+" set cursorline
 
 " <C-a>, <C-x> operates only in decimal system
 set nrformats=
