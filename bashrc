@@ -145,7 +145,7 @@ alias so_b="source ~/.bashrc"
 alias cd_ws="cd $WORKSPACE"
 alias cd_cs="cd $CS"
 
-alias vim="nvim"
+alias vim="vim"
 alias vi="nvim"
 
 alias xup="xrdb ~/.Xresources" # update Xresources
