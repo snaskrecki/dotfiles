@@ -124,8 +124,8 @@ PROMPT_DIRTRIM=3
 # custom aliases and exports
 # begin
 
-export WORKSPACE=~/my-data/personal/workspace
-export CS=~/my-data/personal/education/university/computer-science/courses/year02
+export WORKSPACE=~/my-data/workspace
+export CS=~/my-data/education/university/computer-science/courses/year02
 export VIMCONFIG=~/.vim
 export VIMDATA=~/.vim
 export DOTFILES=~/develop/dotfiles
@@ -135,19 +135,29 @@ alias la="ls -a"
 alias rm="rm -i"
 
 alias emacs="emacs -nw"
-alias cd_vf="cd $VIMCONFIG"
-alias cd_df="cd $DOTFILES"
+alias vf="cd $VIMCONFIG"
+alias df="cd $DOTFILES"
 
-alias e_b="vim ~/.bashrc"
-alias e_v="vim $VIMCONFIG/vimrc"
-alias so_b="source ~/.bashrc"
+alias eb="vim ~/.bashrc"
+alias ev="vim $VIMCONFIG/vimrc"
+alias sb="source ~/.bashrc"
 
-alias cd_ws="cd $WORKSPACE"
-alias cd_cs="cd $CS"
+alias ws="cd $WORKSPACE"
+alias cs="cd $CS"
 
 alias vim="vim"
-alias vi="nvim"
+alias vi="vim"
 
 alias xup="xrdb ~/.Xresources" # update Xresources
+
+export TERM="screen-256color"
+
+# Powerline configuration
+# if [ -f /usr/share/powerline/bindings/bash/powerline.sh ]; then
+#   powerline-daemon -q
+#   POWERLINE_BASH_CONTINUATION=1
+#   POWERLINE_BASH_SELECT=1
+#   source /usr/share/powerline/bindings/bash/powerline.sh
+# fi
 
 # end

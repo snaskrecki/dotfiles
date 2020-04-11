@@ -20,7 +20,7 @@ endif
 call plug#begin('~/.vim/plugged')
 
 " Solarized color theme
-" Plug 'altercation/vim-colors-solarized'
+Plug 'altercation/vim-colors-solarized'
 
 " Defaults everyone can agree on 
 Plug 'tpope/vim-sensible'
@@ -72,6 +72,7 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 syntax          enable
 set background =dark
 colorscheme     solarized
+set t_Co=256
 
 "------------------------------------------------------------
 " Search 
@@ -117,8 +118,9 @@ set clipboard+=unnamedplus
 " 
 
 set laststatus=2
+set showtabline=2 " Always display the tabline, even if there is only one tab
 set showmode " INSERT, NORMAL, ...
-set showcmd 
+set showcmd " pending command shown in the bottom right corner
 set ruler
 
 " Better command-line completion
@@ -201,6 +203,7 @@ map <leader>   ='\'
 nnoremap <leader>ev :e ~/.vim/vimrc<cr>
 nnoremap <leader>sv :so ~/.vim/vimrc<cr>
 nnoremap <leader>w :w<cr>
+inoremap <leader>u <C-o>gUiw<ESC>Ea
 nnoremap <C-p> :<C-u>FZF<cr>
 
 nnoremap c "_c
@@ -210,10 +213,6 @@ cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 
 " NERDTree settings
 map <leader>n :NERDTreeToggle<cr>
-
-" {} brackets autocompletion for C-like programs
-" inoremap {<cr> {<cr>}<esc>O<tab>
-
 
 "------------------------------------------------------------
 " Plugin specific
@@ -226,5 +225,19 @@ let g:ycm_add_preview_to_completeopt = 0
 set completeopt-=preview
 let g:clang_library_path='/usr/lib/llvm-6.0/lib/libclang.so.1'
 
-" Vim-Airline
+let g:airline_powerline_fonts = 1
+if !exists('g:airline_symbols')
+	let g:airline_symbols = {}
+endif
+let g:airline_symbols.space = "\ua0"
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#show_buffers = 0
+" let g:airline_theme = 'solarized'
+
+" " Powerline setup
+" python3 from powerline.vim import setup as powerline_setup
+" python3 powerline_setup()
+" python3 del powerline_setup
+
+" let g:Powerline_symbols="fancy"
+
