@@ -1,4 +1,4 @@
-" For a paranoia. 
+" For a paranoia.  typing something here
 " Normally `:set nocp` is not needed, because it is done automatically
 " when .vimrc is found.
 if &compatible
@@ -6,6 +6,19 @@ if &compatible
   " only when 'compatible' is set.
   set nocompatible
 endif
+
+" Attempt to determine the type of a file based on its name and possibly its
+" contents. Use this to allow intelligent auto-indenting for each filetype,
+" and for plugins that are filetype specific.
+if has('autocmd')
+  filetype plugin indent on
+endif
+
+syntax on   " Turn on syntax recognition
+ 
+"------------------------------------------------------------------------------ 
+" Plugins
+"------------------------------------------------------------------------------ 
 
 if ! filereadable(expand('~/.vim/autoload/plug.vim'))
 	echo "Downloading junegunn/vim-plug to manage plugins..."
@@ -19,11 +32,11 @@ endif
 " - Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/.vim/plugged')
 
-" Solarized color theme
 Plug 'altercation/vim-colors-solarized'
+Plug 'morhetz/gruvbox'
 
 " Defaults everyone can agree on 
-Plug 'tpope/vim-sensible'
+" Plug 'tpope/vim-sensible'
 
 " Detailed info bar at the bottom
 Plug 'vim-airline/vim-airline'
@@ -43,8 +56,8 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
 
 " Adds entire file as a text object functionality
-Plug 'kana/vim-textobj-entire'
-Plug 'kana/vim-textobj-user'
+" Plug 'kana/vim-textobj-entire'
+" Plug 'kana/vim-textobj-user'
 
 " File manager nerdtree
 Plug 'scrooloose/nerdtree'
@@ -54,43 +67,47 @@ Plug 'tpope/vim-unimpaired'
 
 call plug#end()
 
-" Attempt to determine the type of a file based on its name and possibly its
-" contents. Use this to allow intelligent auto-indenting for each filetype,
-" and for plugins that are filetype specific.
-filetype indent plugin on
- 
-" Enable syntax highlighting
-syntax on
-
 " Disables automatic commenting on newline:
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
-"------------------------------------------------------------
+"------------------------------------------------------------------------------ 
 " Color Theme
-"
+"------------------------------------------------------------------------------ 
 
-syntax          enable
+" Allow color schemes to do bright colors without forcing bold.
+if &t_Co == 8 && $TERM !~# '^Eterm'
+  set t_Co=16
+endif
+
+" Enable syntax highlighting
+if has('syntax') && !exists('g:syntax_on')
+  syntax enable
+endif
+
 set background =dark
 colorscheme     solarized
-set t_Co=256
 
-"------------------------------------------------------------
+" let g:solarized_termcolors=256
+
+
+"------------------------------------------------------------------------------ 
 " Search 
-" 
+"------------------------------------------------------------------------------ 
 
 " Highlight searches (use <C-L> to temporarily turn off highlighting; see the
 " mapping of <C-L> below)
-set hlsearch
-set incsearch
+" set hlsearch
 
 " Use case insensitive search, except when using capital letters
 set ignorecase
 set smartcase
 
+set incsearch " search dynamically using partialy typed phrase
 
-"------------------------------------------------------------
+
+"------------------------------------------------------------------------------ 
 " Save
-"
+"------------------------------------------------------------------------------
 
 " Turn backup off, file with extensions .~, .bak, etc.
 set nobackup
@@ -112,16 +129,15 @@ set hidden
 " Use system clipboard
 set clipboard+=unnamedplus
 
-
-"------------------------------------------------------------
+"------------------------------------------------------------------------------  
 " Status bar {{{1
-" 
+"------------------------------------------------------------------------------  
 
-set laststatus=2
-set showtabline=2 " Always display the tabline, even if there is only one tab
-set showmode " INSERT, NORMAL, ...
-set showcmd " pending command shown in the bottom right corner
-set ruler
+set laststatus  =2  " show status even when there is only one window
+" set showtabline =2  " Always display the tabline, even if there is only one tab
+set showmode        " show INSERT, NORMAL, etc. at the bottom
+set showcmd         " pending command shown in the bottom right corner
+set ruler           " cursor position on the bottom right
 
 " Better command-line completion
 set wildmenu
@@ -132,12 +148,13 @@ set wildmode=longest,list,full
 set cmdheight=2
 
 " Display line numbers on the left
-set relativenumber
+set relativenumber  " use relative numbering
+set number          " show current line number instead of 0
+set numberwidth=6   " line number column has always width equal to 6
 
-
-"------------------------------------------------------------
+"------------------------------------------------------------------------------  
 " Indentation options {{{1
-"
+"------------------------------------------------------------------------------  
 " Indentation settings according to personal preference.
  
 " Indentation settings for using 4 spaces instead of tabs.
@@ -145,7 +162,8 @@ set relativenumber
 set shiftwidth  =4
 set softtabstop =4
 set expandtab       " use spaces instead of tabs.
-set smarttab        " let's tab key insert 'tab stops', and bksp deletes tabs.
+set smarttab        " backspace removes $shiftwidth spaces at the start of the 
+                    " line
 set shiftround      " tab / shifting moves to closest tabstop.
 set autoindent      " Match indents on new lines.
 set smartindent     " Intellegently dedent / indent new lines based on rules.
@@ -155,68 +173,84 @@ set smartindent     " Intellegently dedent / indent new lines based on rules.
 "set shiftwidth=4
 "set tabstop=4
 
-
-"------------------------------------------------------------
-" Editor
-"
- 
 " Allow backspacing over autoindent, line breaks and start of insert action
 set backspace=indent,eol,start
 
+
+"------------------------------------------------------------------------------ 
+" Editor
+"------------------------------------------------------------------------------ 
+ 
 " Stop certain movements from always going to the first character of a line.
 " While this behaviour deviates from that of Vi, it does what most users
 " coming from other editors would expect.
 set nostartofline
  
-" Blink cursor on error instead of beeping (grr)
-set visualbell
-set t_vb=
+set visualbell          " use visual bell instead audio signal
+set t_vb=               " map visual bell to nothing
 
-" <C-a>, <C-x> operates only in decimal system
-set nrformats=
+set complete-=i         " don't include file when performing autocompletion
 
-set mouse=a
-set encoding=utf-8
+set nrformats-=octal    " <C-a>, <C-x> operates only in decimal system
+
+set mouse=a             " Enable using mouse
+
+" Use utf-8 encoding when possible
+if &encoding ==# 'latin1' && has('gui_running')
+  set encoding=utf-8
+endif
 
 " Quickly time out on keycodes, but never time out on mappings
-set notimeout ttimeout ttimeoutlen=200
- 
+if !has('nvim') && &ttimeoutlen == -1
+    set notimeout
+    set ttimeout
+    set ttimeoutlen=200
+endif
+
 " Use <F11> to toggle between 'paste' and 'nopaste'
 set pastetoggle=<F11>
 
-"------------------------------------------------------------
-" Mappings {{{1
-"
-" Useful mappings
- 
-" Map Y to act like D and C, i.e. to yank until EOL, rather than act as yy,
-" which is the default
-map Y y$
- 
-" Map <C-L> (redraw screen) to also turn off search highlighting until the
-" next search
-nnoremap <C-L> :nohl<CR><C-L>
+set wrap        " Wrap lines
+set linebreak   " Don't break in the middle of a word
 
-" <leader>          Custom leader key mapping
-map <leader>   ='\'
+" Always show at least one line above/below the cursor.
+if !&scrolloff
+  set scrolloff=1
+endif
+if !&sidescrolloff
+  set sidescrolloff=5
+endif
+set display+=lastline
 
-nnoremap <leader>ev :e ~/.vim/vimrc<cr>
-nnoremap <leader>sv :so ~/.vim/vimrc<cr>
-nnoremap <leader>w :w<cr>
-inoremap <leader>u <C-o>gUiw<ESC>Ea
-nnoremap <C-p> :<C-u>FZF<cr>
+" whitespace as visual chars
+if &listchars ==# 'eol:$'
+  set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
+endif
 
-nnoremap c "_c
+if &history < 1000
+  set history=1000
+endif
 
-" expand '%%' shortcut to %:h in command mode
-cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
+if &tabpagemax < 50
+  set tabpagemax=50
+endif
 
-" NERDTree settings
-map <leader>n :NERDTreeToggle<cr>
+if !empty(&viminfo)
+  set viminfo^=!
+endif
 
-"------------------------------------------------------------
-" Plugin specific
-" 
+set sessionoptions-=options
+set viewoptions-=options
+
+
+"-----------------------------------------------------------------------------
+" Plugin Settings
+"-----------------------------------------------------------------------------
+
+" Load matchit.vim, but only if the user hasn't installed a newer version.
+if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
+  runtime! macros/matchit.vim
+endif
 
 " YouCompleteMe
 let g:ycm_use_clangd = 0
@@ -225,19 +259,86 @@ let g:ycm_add_preview_to_completeopt = 0
 set completeopt-=preview
 let g:clang_library_path='/usr/lib/llvm-6.0/lib/libclang.so.1'
 
+" vim-airline
 let g:airline_powerline_fonts = 1
 if !exists('g:airline_symbols')
 	let g:airline_symbols = {}
 endif
 let g:airline_symbols.space = "\ua0"
 let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#show_buffers = 0
+let g:airline#extensions#tabline#show_buffers = 1
 " let g:airline_theme = 'solarized'
 
-" " Powerline setup
+" " powerline 
 " python3 from powerline.vim import setup as powerline_setup
 " python3 powerline_setup()
 " python3 del powerline_setup
 
-" let g:Powerline_symbols="fancy"
+ let g:Powerline_symbols="fancy"
+
+
+""-----------------------------------------------------------------------------
+" Mappings {{{1
+"-----------------------------------------------------------------------------
+" Useful mappings
+ 
+" Map Y to act like D and C, i.e. to yank until EOL, rather than act as yy,
+" which is the default
+map Y y$
+
+nnoremap c "_c
+
+" Use <C-L> to clear the highlighting of :set hlsearch.
+" if maparg('<C-L>', 'n') ==# ''
+"   nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
+" endif
+
+" if empty(mapcheck('<C-U>', 'i'))
+"   inoremap <C-U> <C-G>u<C-U>
+" endif
+
+" if empty(mapcheck('<C-W>', 'i'))
+"   inoremap <C-W> <C-G>u<C-W>
+" endif
+
+let mapleader =" "
+
+" Shortcutting split navigation, saving a keypress:j
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
+
+nnoremap K 5k
+vnoremap K 5k
+nnoremap J 5j
+vnoremap J 5j
+
+nnoremap <leader>j J
+
+nnoremap <silent> <leader>/ :noh<CR>
+
+nnoremap <leader>tt :tabnew<CR>
+nnoremap <leader>tn :tabnext<CR>
+nnoremap <leader>tp :tabprev<CR>
+nnoremap <leader>to :tabo<CR>
+
+nnoremap <leader>w :w<cr>
+
+nnoremap <leader>ev :e ~/.vim/vimrc<cr>
+nnoremap <leader>sv :so ~/.vim/vimrc<cr>
+
+nnoremap <leader>mx :set lines=43 columns=184<cr>
+nnoremap <leader>mn :set lines=30 columns=92<cr>
+
+inoremap <leader>u <C-o>gUiw<ESC>Ea
+
+" fzf
+nnoremap <C-p> :<C-u>FZF<cr>
+
+" NERDTree settings
+map <leader>n :NERDTreeToggle<cr>
+
+" expand '%%' shortcut to %:h in command mode
+cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 

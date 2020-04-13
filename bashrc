@@ -150,7 +150,13 @@ alias vi="vim"
 
 alias xup="xrdb ~/.Xresources" # update Xresources
 
-export TERM="screen-256color"
+# use vim key bindings 
+# set -o vi
+set -o emacs
+
+# end
+
+# export TERM="screen-256color"
 
 # Powerline configuration
 # if [ -f /usr/share/powerline/bindings/bash/powerline.sh ]; then
@@ -160,4 +166,4 @@ export TERM="screen-256color"
 #   source /usr/share/powerline/bindings/bash/powerline.sh
 # fi
 
-# end
+
