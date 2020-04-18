@@ -123,9 +123,8 @@ PROMPT_DIRTRIM=3
 
 # custom aliases and exports
 # begin
-
-export WORKSPACE=~/my-data/workspace
-export CS=~/my-data/education/university/computer-science/courses/year02
+export WORKSPACE=~/Files/personal/workspace
+export CS=~/Files/personal/education/university/year02/sem02
 export VIMCONFIG=~/.vim
 export VIMDATA=~/.vim
 export DOTFILES=~/develop/dotfiles
@@ -134,7 +133,10 @@ alias ll="ls -l"
 alias la="ls -a"
 alias rm="rm -i"
 
-alias emacs="emacs -nw"
+alias vim="vim"
+alias vi="vim"
+alias emacs="emacs -nw" # start emacs in cmdline mode
+
 alias vf="cd $VIMCONFIG"
 alias df="cd $DOTFILES"
 
@@ -144,9 +146,6 @@ alias sb="source ~/.bashrc"
 
 alias ws="cd $WORKSPACE"
 alias cs="cd $CS"
-
-alias vim="vim"
-alias vi="vim"
 
 alias xup="xrdb ~/.Xresources" # update Xresources
 
