@@ -4,7 +4,7 @@ mkdir -p $HOME/.config
 mkdir -p $HOME/.config/Code/User
 mkdir -p $HOME/.config/i3
 
-DOTFILES=$(pwd)
+export DOTFILES=~/Dropbox/dotfiles
 
 ln -nfs $DOTFILES/bashrc $HOME/.bashrc
 ln -nfs $DOTFILES/gitconfig $HOME/.gitconfig

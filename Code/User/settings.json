@@ -1,121 +1,257 @@
 {
-  //
-  // show welcome page at startup :DDD
-  //
-  "workbench.startupEditor": "welcomePage",  
-  //
-  // telemetry
-  //
+  // show welcome page at startup
+  "workbench.startupEditor": "welcomePage",
+  // telemetry data policy
   "telemetry.enableTelemetry": false,
   "telemetry.enableCrashReporter": false,
-  //
   // instead opening only user settings, open default also
-  //
-  "workbench.settings.useSplitJSON": true,
-  //
-  // editor.font
-  //
-  "editor.fontFamily": "Dejavu Sans Mono", // Ubuntu Mono, Dejavu Sans Mono
-  "editor.fontLigatures": false,
+  "workbench.settings.useSplitJSON": false,
+  "workbench.iconTheme": "vs-seti",
+  "workbench.colorTheme": "One Dark Pro",
+  /*
+   * Monospace Fonts
+   */
+  /*[
+    Dejavu Sans Mono,
+    Menlo,
+    Ubuntu Mono,
+    Consolas,
+    Source Code Pro,
+    Fira Code,
+    Consolas,
+    Inconsolata,
+    Monaco
+  ]*/
+  /*
+   * Editor Font
+   */
+  "editor.fontFamily": "Dejavu Sans Mono",
   "editor.fontSize": 15,
+  "editor.fontLigatures": false,
   "editor.fontWeight": "normal",
-  "editor.lineHeight": 0, // compute line height from font size
-  //
-  // editor.tabSize 
-  //
-  "editor.insertSpaces": true,
-  "editor.tabSize": 4,
-  "editor.detectIndentation": false,
-  //
-  // editor.rulers
-  //
-  "editor.rulers": [
-    80,
-    120
-  ],
-  //
-  // editor.wordWrap
-  //
-  "editor.wordWrap": "wordWrapColumn",
-  "editor.wordWrapColumn": 120,
-  //
-  // terminal.integrated.font
-  //
-  "terminal.integrated.fontFamily": "Dejavu Sans Mono",
-  "terminal.integrated.fontWeight": "normal",
-  "terminal.integrated.fontSize": 15,
-  "terminal.integrated.lineHeight": 0,
-  //
-  // set correct shell
-  //
-  "terminal.integrated.shell.linux": "/bin/bash",
-  //
-  // file specific settings
-  //
-  "[latex]": {
-    "editor.tabSize": 4,
-    "editor.insertSpaces": true
+  "editor.lineHeight": 0,
+  // turn off italics
+  "editor.tokenColorCustomizations": {
+    "textMateRules": [
+      {
+        "scope": [
+          "comment",
+          "comment.block",
+          "comment.block.documentation",
+          "comment.line",
+          "constant",
+          "constant.character",
+          "constant.character.escape",
+          "constant.numeric",
+          "constant.numeric.integer",
+          "constant.numeric.float",
+          "constant.numeric.hex",
+          "constant.numeric.octal",
+          "constant.other",
+          "constant.regexp",
+          "constant.rgb-value",
+          "emphasis",
+          "entity",
+          "entity.name",
+          "entity.name.class",
+          "entity.name.function",
+          "entity.name.method",
+          "entity.name.section",
+          "entity.name.selector",
+          "entity.name.tag",
+          "entity.name.type",
+          "entity.other",
+          "entity.other.attribute-name",
+          "entity.other.inherited-class",
+          "invalid",
+          "invalid.deprecated",
+          "invalid.illegal",
+          "keyword",
+          "keyword.control",
+          "keyword.operator",
+          "keyword.operator.new",
+          "keyword.operator.assignment",
+          "keyword.operator.arithmetic",
+          "keyword.operator.logical",
+          "keyword.other",
+          "markup",
+          "markup.bold",
+          "markup.changed",
+          "markup.deleted",
+          "markup.heading",
+          "markup.inline.raw",
+          "markup.inserted",
+          "markup.italic",
+          "markup.list",
+          "markup.list.numbered",
+          "markup.list.unnumbered",
+          "markup.other",
+          "markup.quote",
+          "markup.raw",
+          "markup.underline",
+          "markup.underline.link",
+          "meta",
+          "meta.block",
+          "meta.cast",
+          "meta.class",
+          "meta.function",
+          "meta.function-call",
+          "meta.preprocessor",
+          "meta.return-type",
+          "meta.selector",
+          "meta.tag",
+          "meta.type.annotation",
+          "meta.type",
+          "punctuation.definition.string.begin",
+          "punctuation.definition.string.end",
+          "punctuation.separator",
+          "punctuation.separator.continuation",
+          "punctuation.terminator",
+          "storage",
+          "storage.modifier",
+          "storage.type",
+          "string",
+          "string.interpolated",
+          "string.other",
+          "string.quoted",
+          "string.quoted.double",
+          "string.quoted.other",
+          "string.quoted.single",
+          "string.quoted.triple",
+          "string.regexp",
+          "string.unquoted",
+          "strong",
+          "support",
+          "support.class",
+          "support.constant",
+          "support.function",
+          "support.other",
+          "support.type",
+          "support.type.property-name",
+          "support.variable",
+          "variable",
+          "variable.language",
+          "variable.name",
+          "variable.other",
+          "variable.other.readwrite",
+          "variable.parameter"
+        ],
+        "settings": {
+          "fontStyle": ""
+        }
+      }
+    ]
   },
+  /*
+   * Terminal Font
+   */
+  "terminal.integrated.fontFamily": "Dejavu Sans Mono",
+  "terminal.integrated.fontSize": 17,
+  "terminal.integrated.fontWeight": "normal",
+  "terminal.integrated.lineHeight": 0,
+  /*
+   * Indentation
+   */
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  "editor.detectIndentation": false,
+  /*
+   * Auto Completion
+   */
+  "editor.wordBasedSuggestions": true,
+  "editor.suggest.insertMode": "replace",
+  /*
+   * Line Wrapping
+   */
+  "editor.rulers": [80],
+  "editor.wordWrap": "wordWrapColumn",
+  "editor.wordWrapColumn": 80,
+  "editor.wrappingIndent": "same",
+  /*
+   * Auto Formatting
+   */
+  "files.autoSave": "onFocusChange",
+  "files.trimTrailingWhitespace": true,
+  "editor.trimAutoWhitespace": true,
+  "editor.formatOnPaste": false,
+  "editor.formatOnSave": false,
+  "editor.renameOnType": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  /*
+   * Prettier
+   */
+  "prettier.useTabs": false,
+  "prettier.tabWidth": 2,
+  "prettier.singleQuote": true,
+  "prettier.arrowParens": "avoid",
+  "prettier.printWidth": 80,
+  /*
+   * Bracket Pair Colorizer 2
+   */
+  "bracket-pair-colorizer-2.colors": [
+    "Gold", //
+    "Orchid",
+    "LightSkyBlue"
+  ],
+  "bracket-pair-colorizer-2.colorMode": "Consecutive",
+  "bracket-pair-colorizer-2.forceUniqueOpeningColor": false,
+  /*
+   * JavaScript
+   */
+  "[javascript]": {
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true,
+  },
+  "[jsonc]": {
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true,
+  },
+  "[json]": {
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true,
+  },
+  /*
+   * HTML
+   */
   "[html]": {
     "editor.tabSize": 2,
     "editor.insertSpaces": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
+  /*
+   * CSS
+   */
   "[css]": {
+    "editor.suggest.insertMode": "replace",
     "editor.tabSize": 2,
     "editor.insertSpaces": true,
   },
-  "[makefile]": {
-    "editor.tabSize": 8,
-    "editor.insertSpaces": false
-  },
+  /*
+   * C/C++
+   */
+  "C_Cpp.intelliSenseEngine": "Default",
+  "C_Cpp.enhancedColorization": "Enabled",
+  "C_Cpp.loggingLevel": "Information",
+  "C_Cpp.clang_format_path": "/usr/bin/clang-format",
+  "C_Cpp.intelliSenseEngineFallback": "Enabled",
+  "C_Cpp.clang_format_fallbackStyle": "LLVM",
+  //
   "[cpp]": {
-    "editor.wordBasedSuggestions": true,
-    "editor.suggest.insertMode": "replace",
-    "editor.tabSize": 4,
+    "editor.tabSize": 2,
     "editor.insertSpaces": true
   },
+  //
   "[c]": {
-    "editor.wordBasedSuggestions": true,
-    "editor.suggest.insertMode": "replace",
-    "editor.tabSize": 4,
-    "editor.insertSpaces": true
-  },
-  "[python]": {
-    "editor.tabSize": 4,
-    "editor.insertSpaces": true
-  },
-  "[json]": {
-    "editor.quickSuggestions": {
-      "strings": true
-    },
-    "editor.suggest.insertMode": "replace",
     "editor.tabSize": 2,
     "editor.insertSpaces": true
   },
-  "[jsonc]": {
-    "editor.quickSuggestions": {
-      "strings": true
-    },
-    "editor.suggest.insertMode": "replace",
-    "editor.tabSize": 2,
-    "editor.insertSpaces": true
-  },
-  //
-  // associate cuda source files with cpp syntax coloring
-  //
+  // Apply C/C++ settings to *.cu files
   "files.associations": {
     "*.cu": "cpp"
   },
-  //
-  // C_Cpp settings
-  //
-  "C_Cpp.intelliSenseEngine": "Default",
-  "C_Cpp.loggingLevel": "Information",
-  "C_Cpp.clang_format_path": "/usr/bin/clang-format",
-  "C_Cpp.enhancedColorization": "Enabled",
-  "C_Cpp.intelliSenseEngineFallback": "Enabled",
-  //
-  // autosave
-  //
-  "files.autoSave": "onWindowChange"
+  "[python]": {
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true,
+    "editor.defaultFormatter": "ms-python.python"
+  }
 }

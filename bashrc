@@ -56,8 +56,12 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
+# default PS1
+# if [ "$color_prompt" = yes ]; then
+#    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\W\[\033[00m\]$ '
+
 if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\W\[\033[00m\]\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\W\[\033[00m\]$ '
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\W\$ '
 fi
@@ -122,12 +126,10 @@ PROMPT_DIRTRIM=3
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 # custom aliases and exports
-# begin
-export WORKSPACE=~/Files/personal/workspace
-export CS=~/Files/personal/education/university/year02/sem02
+
 export VIMCONFIG=~/.vim
 export VIMDATA=~/.vim
-export DOTFILES=~/develop/dotfiles
+export DOTFILES=~/Dropbox/dotfiles
 
 alias ll="ls -l"
 alias la="ls -a"
@@ -137,15 +139,15 @@ alias vim="vim"
 alias vi="vim"
 alias emacs="emacs -nw" # start emacs in cmdline mode
 
-alias vf="cd $VIMCONFIG"
-alias df="cd $DOTFILES"
+alias dotf="cd $DOTFILES"
 
 alias eb="vim ~/.bashrc"
 alias ev="vim $VIMCONFIG/vimrc"
 alias sb="source ~/.bashrc"
 
-alias ws="cd $WORKSPACE"
-alias cs="cd $CS"
+alias python="python3"
+alias ipython="ipython3"
+alias pip="pip3"
 
 alias xup="xrdb ~/.Xresources" # update Xresources
 
@@ -153,16 +155,15 @@ alias xup="xrdb ~/.Xresources" # update Xresources
 # set -o vi
 set -o emacs
 
-# end
-
 # export TERM="screen-256color"
+export TERM=xterm-256color
 
-# Powerline configuration
-# if [ -f /usr/share/powerline/bindings/bash/powerline.sh ]; then
-#   powerline-daemon -q
-#   POWERLINE_BASH_CONTINUATION=1
-#   POWERLINE_BASH_SELECT=1
-#   source /usr/share/powerline/bindings/bash/powerline.sh
-# fi
-
+# colors in the manual
+export LESS_TERMCAP_mb=$'\e[1;32m'
+export LESS_TERMCAP_md=$'\e[1;32m'
+export LESS_TERMCAP_me=$'\e[0m'
+export LESS_TERMCAP_se=$'\e[0m'
+export LESS_TERMCAP_so=$'\e[01;33m'
+export LESS_TERMCAP_ue=$'\e[0m'
+export LESS_TERMCAP_us=$'\e[1;4;31m'
 
