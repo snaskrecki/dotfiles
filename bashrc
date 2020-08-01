@@ -168,3 +168,13 @@ export LESS_TERMCAP_so=$'\e[01;35m'
 export LESS_TERMCAP_ue=$'\e[0m'
 export LESS_TERMCAP_us=$'\e[1;34m'
 # }}}
+
+# powerline-shell {{{
+# function _update_ps1() {
+#     PS1=$(powerline-shell $?)
+# }
+# 
+# if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
+#     PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
+# fi
+# }}}
