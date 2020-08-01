@@ -126,7 +126,6 @@ PROMPT_DIRTRIM=3
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 # custom aliases and exports
-
 export VIMCONFIG=~/.vim
 export VIMDATA=~/.vim
 export DOTFILES=~/Dropbox/dotfiles
@@ -152,18 +151,20 @@ alias pip="pip3"
 alias xup="xrdb ~/.Xresources" # update Xresources
 
 # use vim key bindings 
-# set -o vi
 set -o emacs
 
-# export TERM="screen-256color"
-export TERM=xterm-256color
-
-# colors in the manual
+# colors in the manual {{{
+# 31 red
+# 32 green
+# 33 yellow
+# 34 blue
+# 35 purple
+# 36 cyan
 export LESS_TERMCAP_mb=$'\e[1;32m'
 export LESS_TERMCAP_md=$'\e[1;32m'
 export LESS_TERMCAP_me=$'\e[0m'
 export LESS_TERMCAP_se=$'\e[0m'
-export LESS_TERMCAP_so=$'\e[01;33m'
+export LESS_TERMCAP_so=$'\e[01;35m'
 export LESS_TERMCAP_ue=$'\e[0m'
-export LESS_TERMCAP_us=$'\e[1;4;31m'
-
+export LESS_TERMCAP_us=$'\e[1;34m'
+# }}}
