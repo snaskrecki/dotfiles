@@ -6,7 +6,7 @@
   "telemetry.enableCrashReporter": false,
   // instead opening only user settings, open default also
   "workbench.settings.useSplitJSON": false,
-  "workbench.iconTheme": "vs-seti",
+  "workbench.iconTheme": "material-icon-theme",
   "workbench.colorTheme": "One Dark Pro",
   /*
    * Monospace Fonts
@@ -237,7 +237,7 @@
   "C_Cpp.clang_format_fallbackStyle": "LLVM",
   //
   "[cpp]": {
-    "editor.tabSize": 2,
+    "editor.tabSize": 4,
     "editor.insertSpaces": true
   },
   //

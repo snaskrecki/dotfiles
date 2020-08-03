@@ -136,13 +136,14 @@ alias rm="rm -i"
 
 alias vim="vim"
 alias vi="vim"
-alias emacs="emacs -nw" # start emacs in cmdline mode
+#alias emacs="emacs -nw" # start emacs in cmdline mode
 
 alias dotf="cd $DOTFILES"
 
 alias eb="vim ~/.bashrc"
 alias ev="vim $VIMCONFIG/vimrc"
 alias sb="source ~/.bashrc"
+alias ee="emacs ~/.emacs.d/init.el"
 
 alias python="python3"
 alias ipython="ipython3"
