@@ -7,7 +7,6 @@
   // instead opening only user settings, open default also
   "workbench.settings.useSplitJSON": false,
   "workbench.iconTheme": "material-icon-theme",
-  "workbench.colorTheme": "One Dark Pro",
   /*
    * Monospace Fonts
    */
@@ -152,7 +151,7 @@
   /*
    * Indentation
    */
-  "editor.tabSize": 2,
+  "editor.tabSize": 4,
   "editor.insertSpaces": true,
   "editor.detectIndentation": false,
   /*
@@ -181,7 +180,7 @@
    * Prettier
    */
   "prettier.useTabs": false,
-  "prettier.tabWidth": 2,
+  "prettier.tabWidth": 4,
   "prettier.singleQuote": true,
   "prettier.arrowParens": "avoid",
   "prettier.printWidth": 80,
@@ -199,22 +198,22 @@
    * JavaScript
    */
   "[javascript]": {
-    "editor.tabSize": 2,
+    "editor.tabSize": 4,
     "editor.insertSpaces": true,
   },
   "[jsonc]": {
-    "editor.tabSize": 2,
+    "editor.tabSize": 4,
     "editor.insertSpaces": true,
   },
   "[json]": {
-    "editor.tabSize": 2,
+    "editor.tabSize": 4,
     "editor.insertSpaces": true,
   },
   /*
    * HTML
    */
   "[html]": {
-    "editor.tabSize": 2,
+    "editor.tabSize": 4,
     "editor.insertSpaces": true,
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
@@ -223,7 +222,7 @@
    */
   "[css]": {
     "editor.suggest.insertMode": "replace",
-    "editor.tabSize": 2,
+    "editor.tabSize": 4,
     "editor.insertSpaces": true,
   },
   /*
@@ -242,7 +241,7 @@
   },
   //
   "[c]": {
-    "editor.tabSize": 2,
+    "editor.tabSize": 4,
     "editor.insertSpaces": true
   },
   // Apply C/C++ settings to *.cu files
@@ -253,5 +252,13 @@
     "editor.tabSize": 4,
     "editor.insertSpaces": true,
     "editor.defaultFormatter": "ms-python.python"
+  },
+  "C_Cpp.updateChannel": "Insiders",
+  "workbench.colorTheme": "One Dark Pro",
+  //
+  "[shellscript]": {
+    "files.eol": "\n",
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true,
   }
 }
