@@ -317,7 +317,7 @@ executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
-  (setq initial-frame-alist '((top . 30) (left . 700) (width . 90) (height . 52)))
+  (setq initial-frame-alist '((top . 30) (left . 600) (width . 90) (height . 52)))
   )
 
 (defun dotspacemacs/user-config ()
