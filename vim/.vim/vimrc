@@ -4,26 +4,26 @@
 "              newbie, basing your first .vimrc on this file is a good choice.
 "              If you're a more advanced user, building your own .vimrc based
 "              on this file is still a good idea.
- 
+
 "------------------------------------------------------------
 " Features {{{1
 "
 " These options and commands enable some very useful features in Vim, that
 " no user should have to live without.
- 
+
 " Set custom leader keys
-let mapleader       ="\\"
+let mapleader       =" "
 let maplocalleader  ="_"
 
 " Set 'nocompatible' to ward off unexpected things that your distro might
 " have made, as well as sanely reset options when re-sourcing .vimrc
 set nocompatible
- 
+
 " Attempt to determine the type of a file based on its name and possibly its
 " contents. Use this to allow intelligent auto-indenting for each filetype,
 " and for plugins that are filetype specific.
 filetype indent plugin on
- 
+
 " Enable syntax highlighting
 syntax on
 
@@ -45,13 +45,18 @@ call plug#begin(system('echo -n "${XDG_CONFIG_HOME:-$HOME}/.vim/plugged"'))
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'joshdick/onedark.vim'
-Plug 'junegunn/goyo.vim'
-" Plug 'sheerun/vim-polyglot'
+Plug 'sonph/onehalf', {'rtp': 'vim/'}
+" Plug 'junegunn/goyo.vim'
+" Plug 'altercation/vim-colors-solarized'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'preservim/nerdtree'
+Plug 'dracula/vim', { 'as': 'dracula' }
 call plug#end()
 
 " ------------------------------------------------------------
 " Matchit {{{1
-" 
+"
 " Jump to matching bracket,brace,etc.
 
 " Load matchit.vim, but only if the user hasn't installed a newer version.
@@ -61,24 +66,47 @@ endif
 set matchpairs+=<:>
 
 " ------------------------------------------------------------
-" Vim Airline {{{1
-" 
-" Use colorful powerline as a status bar
+" NERDTree {{{1
+"
+" file explorer
 
-" tabline at the top
-let g:airline#extensions#tabline#enabled = 1
+let g:NERDTreeShowHidden = 1
+let g:NERDTreeMinimalUI = 1
+let g:NERDTreeIgnore = []
+let g:NERDTreeStatusline = ''
 
-" Use Powerline symbols
-let g:airline_powerline_fonts = 1
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
-" Use specific theme for air-line colors
-let g:airline_theme='onedark'
+" ------------------------------------------------------------
+" NERDTree {{{1
+"
+" autocompletion
+
+" engines
+let g:coc_global_extensions = ['coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-prettier', 'coc-tsserver']
+
+" ------------------------------------------------------------
+" Netrw {{{1
+"
+" file manager
+
+" open file in a vertical split
+let g:netrw_browse_split=4
+
+" set netrw window size to 25% of the whole window
+let g:netrw_winsize=25
+
+" remove banner at the top
+let g:netrw_banner=0
+
+" open netrw window on the left
+let g:netrw_altv=1
 
 "------------------------------------------------------------
 " Must have options {{{1
 "
 " These are highly recommended options.
- 
+
 " Vim with default settings does not allow easy switching between multiple files
 " in the same editor window. Users can use multiple split windows or multiple
 " tab pages to edit multiple files, but it is still best to enable an option to
@@ -93,13 +121,13 @@ let g:airline_theme='onedark'
 " try to quit without saving, and swap files will keep you safe if your computer
 " crashes.
 set hidden
- 
+
 " Note that not everyone likes working this way (with the hidden option).
 " Alternatives include using tabs or split windows instead of re-using the same
 " window as mentioned above, and/or either of the following options:
 " set confirm
 " set autowriteall
- 
+
 " Better command-line completion
 set wildmenu
 
@@ -107,7 +135,7 @@ set wildmode=longest,list,full
 
 " Show partial commands in the last line of the screen
 set showcmd
- 
+
 " Highlight searches (use <C-L> to temporarily turn off highlighting; see the
 " mapping of <C-L> below)
 set hlsearch
@@ -127,29 +155,29 @@ set noshowmatch
 " change Vim's behaviour in ways which deviate from the true Vi way, but
 " which are considered to add usability. Which, if any, of these options to
 " use is very much a personal preference, but they are harmless.
- 
+
 " Use case insensitive search, except when using capital letters
 set ignorecase
 set smartcase
- 
+
 " Allow backspacing over autoindent, line breaks and start of insert action
 set backspace=indent,eol,start
- 
+
 " When opening a new line and no filetype-specific indenting is enabled, keep
 " the same indent as the line you're currently on. Useful for READMEs, etc.
 set autoindent
 
 set smartindent
- 
+
 " Stop certain movements from always going to the first character of a line.
 " While this behaviour deviates from that of Vi, it does what most users
 " coming from other editors would expect.
 set nostartofline
- 
+
 " Display the cursor position on the last line of the screen or in the status
 " line of a window
 set ruler
- 
+
 " Always display the status line, even if only one window is displayed
 set laststatus=2
 
@@ -158,41 +186,41 @@ set ruler
 set laststatus=2
 set showtabline=2
 set title
- 
+
 " Instead of failing a command because of unsaved changes, instead raise a
 " dialogue asking if you wish to save changed files.
 set confirm
- 
+
 " Use visual bell instead of beeping when doing something wrong
 set visualbell
- 
+
 " And reset the terminal code for the visual bell. If visualbell is set, and
 " this line is also included, vim will neither flash nor beep. If visualbell
 " is unset, this does nothing.
 set t_vb=
- 
+
 " Enable use of the mouse for all modes
 set mouse=a
- 
+
 " Use system clipboard
 set clipboard+=unnamedplus
 
 " Set the command window height to 2 lines, to avoid many cases of having to
 " "press <Enter> to continue"
 set cmdheight=2
- 
+
 " Display line numbers on the left
 set number
 
 set relativenumber
 set numberwidth=5
- 
+
 " Quickly time out on keycodes, but never time out on mappings
 set notimeout ttimeout ttimeoutlen=200
- 
+
 " Use <F11> to toggle between 'paste' and 'nopaste'
 set pastetoggle=<F11>
- 
+
 " <C-a> / <C-x> treat numbers as decimals
 set nrformats=
 
@@ -216,9 +244,22 @@ endif
 set sessionoptions-=options
 set viewoptions-=options
 
-if &encoding ==# 'latin1' && has('gui_running')
+" if &encoding ==# 'latin1' && has('gui_running')
+"   set encoding=UTF-8
+" endif
+
+" if has("multi_byte")
+  if &termencoding == ""
+    let &termencoding = &encoding
+  endif
   set encoding=utf-8
-endif
+  setglobal fileencoding=utf-8
+  " Uncomment to have 'bomb' on by default for new files.
+  " Note, this will not apply to the first, empty buffer created at Vim startup.
+  "setglobal bomb
+  set fileencodings=ucs-bom,utf-8,latin1
+" endif
+
 
 if &listchars ==# 'eol:$'
   set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+
@@ -229,20 +270,30 @@ set nobackup
 set nowritebackup
 set noswapfile
 
+" Create undo file in vim folder
+set undodir=~/.vim/undodir
+set undofile
+
 " Text wrapping
 set wrap
 set linebreak
 set textwidth=80
+" set colorcolumn=80
+" set cursorline
 
-" Folding
-set foldmethod=marker
+" Use special syntax (3x{ at the end of the line) to create folds
+" set foldmethod=marker
 
-" Splits open at the bottom and right, which is non-retarded, unlike vim 
+" Splits open at the bottom and right, which is non-retarded, unlike vim
 " defaults.
-set splitbelow splitright
+set splitbelow 
+set splitright
 
 " Disables auto commenting on newline:
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+
+" Remove trailing whitespace on save
+" autocmd BufWritePre * %s/\s\+$//e
 
 if v:version > 703 || v:version == 703 && has("patch541")
   set formatoptions+=j " Delete comment character when joining commented lines
@@ -266,13 +317,13 @@ set autoread
 " Indentation options {{{1
 "
 " Indentation settings according to personal preference.
- 
+
 " Indentation settings for using 4 spaces instead of tabs.
 " Do not change 'tabstop' from its default value of 8 with this setup.
 set shiftwidth=4
 set softtabstop=4
 set expandtab
- 
+
 " Indentation settings for using hard tabs for indent. Display tabs as
 " four characters wide.
 "set shiftwidth=4
@@ -280,13 +331,13 @@ set expandtab
 
 set shiftround
 set smarttab
- 
+
 "------------------------------------------------------------
 " Color Theme {{{1
 "
 " Color Theme Settings
 
-" number of color in the terminal
+" number of colors in the terminal
 set t_Co=256
 
 " This command switches on syntax highlighting:
@@ -299,20 +350,34 @@ set background=dark
 colorscheme onedark
 
 " When on, uses |highlight-guifg| and |highlight-guibg| attributes in
-" the terminal (thus using 24-bit color). 
+" the terminal (thus using 24-bit color).
 if exists('+termguicolors')
   let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
   set termguicolors
 endif
 
+" ------------------------------------------------------------
+" Vim Airline {{{1
+"
+" Use colorful powerline as a status bar
+
+" tabline at the top
+let g:airline#extensions#tabline#enabled = 1
+
+" Use Powerline symbols
+let g:airline_powerline_fonts = 1
+
+" Use specific theme for air-line colors
+let g:airline_theme='onedark'
+
 "------------------------------------------------------------
 " Mappings {{{1
-" 
+"
 " Useful mappings
 
-" Clear highlighting 
-nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
+" Clear highlighting
+nnoremap <silent> <C-l> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
 
 if empty(mapcheck('<C-U>', 'i'))
   inoremap <C-U> <C-G>u<C-U>
@@ -325,10 +390,56 @@ endif
 nnoremap <Leader>gy :Goyo<CR>
 
 nnoremap <Leader>ev :edit $MYVIMRC<CR>
+nnoremap <Leader>en :edit $HOME/.vim/vimrc<CR>
 nnoremap <Leader>sv :source $MYVIMRC<CR>
 nnoremap <Leader>ep :edit $VIMCONFIG/after/ftplugin<CR>
 nnoremap <Leader>eb :edit $HOME/.bashrc<CR>
 nnoremap <Leader>sb :!source $HOME/.bashrc<CR>
+
+" open netrw
+" when set hidden is present then :Lex spawns new empty buffers that build up
+nnoremap <silent> <Leader>n :set nohidden<CR> :Lexplore<CR> :set hidden<CR>
+nnoremap <Leader>pv :wincmd v<bar><CR> <C-W>h :Ex <bar> :vertical resize 30<CR>
+
+" toggle NERDTree
+nnoremap <silent> <A-b> :NERDTreeToggle<CR>
+
+" map <Esc> to exit terminal-mode:
+tnoremap <Esc> <C-\><C-n>
+
+" simulate |i_CTRL-R| in terminal-mode: >
+tnoremap <expr> <C-R> '<C-\><C-N>"'.nr2char(getchar()).'pi'
+
+" To use `ALT+{h,j,k,l}` to navigate windows from any mode
+tnoremap <A-j> <C-\><C-N><C-w>j
+tnoremap <A-k> <C-\><C-N><C-w>k
+tnoremap <A-l> <C-\><C-N><C-w>l
+inoremap <A-h> <C-\><C-N><C-w>h
+inoremap <A-j> <C-\><C-N><C-w>j
+inoremap <A-k> <C-\><C-N><C-w>k
+inoremap <A-l> <C-\><C-N><C-w>l
+nnoremap <A-h> <C-w>h
+nnoremap <A-j> <C-w>j
+nnoremap <A-k> <C-w>k
+nnoremap <A-l> <C-w>l
+
+" start terminal in insert mode
+au BufEnter * if &buftype == 'terminal' | :startinsert | endif
+
+" open terminal on ctrl+n
+function! OpenTerminal()
+  split term://bash
+  resize 10
+endfunction
+nnoremap <A-n> :call OpenTerminal()<CR>
+
+" FZF
+nnoremap <C-p> :FZF<CR>
+let g:fzf_action = {
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-s': 'split',
+  \ 'ctrl-v': 'vsplit'
+  \}
 
 " Terminal size
 nnoremap <Leader>rs :set lines=20 columns=85<CR>
@@ -336,10 +447,13 @@ nnoremap <Leader>rh :set lines=43 columns=85<CR>
 nnoremap <Leader>rb :set lines=43 columns=171<CR>
 
 " Switch buffers
-nnoremap <silent> ]b :bnext<CR>
-nnoremap <silent> [b :bprevious<CR>
+" nnoremap <silent> ]b :bnext<CR>
+" nnoremap <silent> [b :bprevious<CR>
 nnoremap <silent> ]B :blast<CR>
 nnoremap <silent> [B :bfirst<CR>
+
+nnoremap <silent> <A-,> :bprevious<CR>
+nnoremap <silent> <A-.> :bnext<CR>
 
 " Expand %% to current directory path when in command mode
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
@@ -355,4 +469,11 @@ function! s:VSetSearch(cmdtype)
   let @s = temp
 endfunction
 
+" markdown
+vnoremap <Leader>mb c****<Esc>hP
+vnoremap <Leader>mi c**<Esc>P
+
+nnoremap <Leader>mb viwc****<Esc>hP
+nnoremap <Leader>mi viwc**<Esc>P
 " -----------------------------------------------------------------------------
+

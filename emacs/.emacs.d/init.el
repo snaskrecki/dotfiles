@@ -24,28 +24,35 @@
 (setq org-todo-keywords
   '((sequence "TODO" "IN-PROGRESS" "WAITING" "DONE")))
 
+;; enable speed keys
+(setq org-use-speed-commands t)
+
+;; ---------------------------------------------------------------------------
+;; melpa
+;; ---------------------------------------------------------------------------
+
+(require 'package)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+;; Comment/uncomment this line to enable MELPA Stable if desired.  See `package-archive-priorities`
+;; and `package-pinned-packages`. Most users will not need or want to do this.
+;;(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+(package-initialize)
+
 ;; ---------------------------------------------------------------------------
 ;; color theme
 ;; ---------------------------------------------------------------------------
 
 ;; set permanent color theme
-(load-theme 'misterioso)
+(load-theme 'atom-one-dark t)
 
 ;; disable emacs's automatic backup~ file
 (setq make-backup-files nil)
 
 ;; stop creating those #auto-save# files
 (setq auto-save-default nil)
-
-;; enable line numbers
-(when (version<= "26.0.50" emacs-version )
-  (global-display-line-numbers-mode))
-
-;; relative line numbers
-(setq display-line-numbers 'relative)
       
 ;; insert a space after line number
-(setq linum-format "%d ")
+;; (setq linum-format "%d ")
 
 ;; disable emacs's automatic backup ~ file
 (setq make-backup-files nil)
@@ -75,10 +82,11 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   '("d1af5ef9b24d25f50f00d455bd51c1d586ede1949c5d2863bef763c60ddf703a" "f56eb33cd9f1e49c5df0080a3e8a292e83890a61a89bceeaa481a5f183e8e3ef" "2809bcb77ad21312897b541134981282dc455ccd7c14d74cc333b6e549b824f3" default))
  '(org-agenda-files
-   '("~/Dropbox/notes/rainer-konig-org-tut/e03s01-schedule-deadlines-and-agenda-views/after/mylife.org"
-     "/home/simon/Dropbox/notes/"
-     "~/Dropbox/notes/")))
+   '("~/Dropbox/notes/rainer-konig-org-tut/e03s01-schedule-deadlines-and-agenda-views/after/mylife.org" "/home/simon/Dropbox/notes/" "~/Dropbox/notes/"))
+ '(package-selected-packages '(atom-one-dark-theme zenburn-theme solarized-theme)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -115,3 +123,9 @@
 ;; set the default font for new frames
 ;; (add-to-list 'default-frame-alist '(font . "DejaVu Sans Mono-13"))
 
+;; enable line numbers
+;; (when (version<= "26.0.50" emacs-version )
+;;   (global-display-line-numbers-mode))
+
+;; relative line numbers
+;; (setq display-line-numbers 'relative)

@@ -134,8 +134,8 @@ alias ll="ls -l"
 alias la="ls -a"
 alias rm="rm -i"
 
-alias vim="vim"
-alias vi="vim"
+alias vim="nvim"
+alias vi="nvim"
 #alias emacs="emacs -nw" # start emacs in cmdline mode
 
 alias dotf="cd $DOTFILES"
@@ -151,7 +151,7 @@ alias pip="pip3"
 
 alias xup="xrdb ~/.Xresources" # update Xresources
 
-# use vim key bindings 
+# use vim key bindings
 set -o emacs
 
 # colors in the manual {{{
@@ -174,8 +174,12 @@ export LESS_TERMCAP_us=$'\e[1;34m'
 # function _update_ps1() {
 #     PS1=$(powerline-shell $?)
 # }
-# 
+#
 # if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
 #     PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
 # fi
 # }}}
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
