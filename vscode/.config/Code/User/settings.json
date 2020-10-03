@@ -242,9 +242,9 @@
     "C_Cpp.intelliSenseEngine": "Default",
     "C_Cpp.enhancedColorization": "Enabled",
     "C_Cpp.loggingLevel": "Information",
-    "C_Cpp.clang_format_path": "/usr/bin/clang-format",
+    //"C_Cpp.clang_format_path": "/usr/bin/clang-format",
     "C_Cpp.intelliSenseEngineFallback": "Enabled",
-    "C_Cpp.clang_format_fallbackStyle": "LLVM",
+    //"C_Cpp.clang_format_fallbackStyle": "LLVM",
     //
     "[cpp]": {
         "editor.tabSize": 4,
@@ -253,7 +253,7 @@
     //
     "[c]": {
         "editor.tabSize": 4,
-        "editor.insertSpaces": true
+        "editor.insertSpaces": true,
     },
     // Apply C/C++ settings to *.cu files
     "files.associations": {
@@ -265,7 +265,6 @@
         "editor.defaultFormatter": "ms-python.python"
     },
     "C_Cpp.updateChannel": "Insiders",
-    "workbench.colorTheme": "One Dark Pro",
     //
     "[shellscript]": {
         "files.eol": "\n",
@@ -278,5 +277,6 @@
     "liveshare.languages.allowGuestCommandControl": true,
     "[typescript]": {
         "editor.defaultFormatter": "vscode.typescript-language-features"
-    }
+    },
+    "workbench.colorTheme": "Dracula Soft"
 }

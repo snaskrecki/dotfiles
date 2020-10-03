@@ -45,13 +45,14 @@ call plug#begin(system('echo -n "${XDG_CONFIG_HOME:-$HOME}/.vim/plugged"'))
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'joshdick/onedark.vim'
-Plug 'sonph/onehalf', {'rtp': 'vim/'}
+Plug 'morhetz/gruvbox'
+Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'altercation/vim-colors-solarized'
 " Plug 'junegunn/goyo.vim'
-" Plug 'altercation/vim-colors-solarized'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'preservim/nerdtree'
-Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'sheerun/vim-polyglot'
 call plug#end()
 
 " ------------------------------------------------------------
@@ -182,7 +183,6 @@ set ruler
 set laststatus=2
 
 set showmode
-set ruler
 set laststatus=2
 set showtabline=2
 set title
@@ -312,7 +312,6 @@ set complete-=i
 
 " Reread file when changed outside Vim
 set autoread
-
 "------------------------------------------------------------
 " Indentation options {{{1
 "
@@ -332,6 +331,21 @@ set expandtab
 set shiftround
 set smarttab
 
+" GUI {{{1
+"
+" options
+
+set gfn=DejaVu\ Sans\ Mono\ 13
+set gfw=
+
+" Onedark {{{1
+"
+" options
+
+let g:onedark_hide_endofbuffer=0
+let g:onedark_termcolors=256
+let g:onedark_terminal_italics=0
+
 "------------------------------------------------------------
 " Color Theme {{{1
 "
@@ -347,14 +361,14 @@ syntax enable
 set background=dark
 
 " Use a particular colorscheme
-colorscheme onedark
+colorscheme dracula
 
 " When on, uses |highlight-guifg| and |highlight-guibg| attributes in
 " the terminal (thus using 24-bit color).
 if exists('+termguicolors')
   let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-  set termguicolors
+  " set termguicolors
 endif
 
 " ------------------------------------------------------------
@@ -369,7 +383,7 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 
 " Use specific theme for air-line colors
-let g:airline_theme='onedark'
+let g:airline_theme='dracula'
 
 "------------------------------------------------------------
 " Mappings {{{1
@@ -377,7 +391,7 @@ let g:airline_theme='onedark'
 " Useful mappings
 
 " Clear highlighting
-nnoremap <silent> <C-l> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
+nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
 
 if empty(mapcheck('<C-U>', 'i'))
   inoremap <C-U> <C-G>u<C-U>
@@ -389,10 +403,10 @@ endif
 " goyo
 nnoremap <Leader>gy :Goyo<CR>
 
-nnoremap <Leader>ev :edit $MYVIMRC<CR>
-nnoremap <Leader>en :edit $HOME/.vim/vimrc<CR>
-nnoremap <Leader>sv :source $MYVIMRC<CR>
-nnoremap <Leader>ep :edit $VIMCONFIG/after/ftplugin<CR>
+nnoremap <Leader>ev :edit $HOME/.vim/vimrc<CR>
+nnoremap <Leader>en :edit $HOME/.config/nvim/init.vim<CR>
+nnoremap <Leader>sv :source $HOME/.vim/vimrc<CR>
+nnoremap <Leader>sn :source $HOME/.config/nvim/init.vim<CR>
 nnoremap <Leader>eb :edit $HOME/.bashrc<CR>
 nnoremap <Leader>sb :!source $HOME/.bashrc<CR>
 
