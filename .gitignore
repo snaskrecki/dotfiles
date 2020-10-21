@@ -1,2 +1,7 @@
 # .gitignore
-/vim/bundle/*
+/vim/.vim/bundle
+/vim/.vim/autoload
+/vim/.vim/undodir
+/vim/.vim/plugged
+/vim/.vim/.netrwhist
+/vim/.vim/_vimrc

@@ -25,7 +25,7 @@ set nocompatible
 filetype indent plugin on
 
 " Enable syntax highlighting
-syntax on
+" syntax on
 
 "------------------------------------------------------------
 " Plugins {{{1
@@ -46,9 +46,9 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'joshdick/onedark.vim'
 Plug 'morhetz/gruvbox'
+Plug 'chriskempson/base16-vim'
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'altercation/vim-colors-solarized'
-" Plug 'junegunn/goyo.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'preservim/nerdtree'
@@ -77,14 +77,6 @@ let g:NERDTreeIgnore = []
 let g:NERDTreeStatusline = ''
 
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-
-" ------------------------------------------------------------
-" NERDTree {{{1
-"
-" autocompletion
-
-" engines
-let g:coc_global_extensions = ['coc-emmet', 'coc-css', 'coc-html', 'coc-json', 'coc-prettier', 'coc-tsserver']
 
 " ------------------------------------------------------------
 " Netrw {{{1
@@ -244,9 +236,9 @@ endif
 set sessionoptions-=options
 set viewoptions-=options
 
-" if &encoding ==# 'latin1' && has('gui_running')
-"   set encoding=UTF-8
-" endif
+if &encoding ==# 'latin1' && has('gui_running')
+  set encoding=UTF-8
+endif
 
 " if has("multi_byte")
   if &termencoding == ""
@@ -335,8 +327,10 @@ set smarttab
 "
 " options
 
-set gfn=DejaVu\ Sans\ Mono\ 13
-set gfw=
+if has("gui_running")
+  set guifont=Menlo\ 13
+  set guifontwide=
+endif
 
 " Onedark {{{1
 "
@@ -361,14 +355,14 @@ syntax enable
 set background=dark
 
 " Use a particular colorscheme
-colorscheme dracula
+colorscheme solarized
 
 " When on, uses |highlight-guifg| and |highlight-guibg| attributes in
 " the terminal (thus using 24-bit color).
 if exists('+termguicolors')
   let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-  " set termguicolors
+  set termguicolors
 endif
 
 " ------------------------------------------------------------
@@ -383,7 +377,7 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 
 " Use specific theme for air-line colors
-let g:airline_theme='dracula'
+" let g:airline_theme='onedark'
 
 "------------------------------------------------------------
 " Mappings {{{1
@@ -400,8 +394,13 @@ if empty(mapcheck('<C-W>', 'i'))
   inoremap <C-W> <C-G>u<C-W>
 endif
 
-" goyo
-nnoremap <Leader>gy :Goyo<CR>
+" toggle NERDTree
+nnoremap <silent> <Leader>b :NERDTreeToggle<CR>
+
+nnoremap <Leader>j <C-w>j
+nnoremap <Leader>h <C-w>h
+nnoremap <Leader>k <C-w>k
+nnoremap <Leader>l <C-w>l
 
 nnoremap <Leader>ev :edit $HOME/.vim/vimrc<CR>
 nnoremap <Leader>en :edit $HOME/.config/nvim/init.vim<CR>
@@ -409,43 +408,6 @@ nnoremap <Leader>sv :source $HOME/.vim/vimrc<CR>
 nnoremap <Leader>sn :source $HOME/.config/nvim/init.vim<CR>
 nnoremap <Leader>eb :edit $HOME/.bashrc<CR>
 nnoremap <Leader>sb :!source $HOME/.bashrc<CR>
-
-" open netrw
-" when set hidden is present then :Lex spawns new empty buffers that build up
-nnoremap <silent> <Leader>n :set nohidden<CR> :Lexplore<CR> :set hidden<CR>
-nnoremap <Leader>pv :wincmd v<bar><CR> <C-W>h :Ex <bar> :vertical resize 30<CR>
-
-" toggle NERDTree
-nnoremap <silent> <A-b> :NERDTreeToggle<CR>
-
-" map <Esc> to exit terminal-mode:
-tnoremap <Esc> <C-\><C-n>
-
-" simulate |i_CTRL-R| in terminal-mode: >
-tnoremap <expr> <C-R> '<C-\><C-N>"'.nr2char(getchar()).'pi'
-
-" To use `ALT+{h,j,k,l}` to navigate windows from any mode
-tnoremap <A-j> <C-\><C-N><C-w>j
-tnoremap <A-k> <C-\><C-N><C-w>k
-tnoremap <A-l> <C-\><C-N><C-w>l
-inoremap <A-h> <C-\><C-N><C-w>h
-inoremap <A-j> <C-\><C-N><C-w>j
-inoremap <A-k> <C-\><C-N><C-w>k
-inoremap <A-l> <C-\><C-N><C-w>l
-nnoremap <A-h> <C-w>h
-nnoremap <A-j> <C-w>j
-nnoremap <A-k> <C-w>k
-nnoremap <A-l> <C-w>l
-
-" start terminal in insert mode
-au BufEnter * if &buftype == 'terminal' | :startinsert | endif
-
-" open terminal on ctrl+n
-function! OpenTerminal()
-  split term://bash
-  resize 10
-endfunction
-nnoremap <A-n> :call OpenTerminal()<CR>
 
 " FZF
 nnoremap <C-p> :FZF<CR>
@@ -461,13 +423,10 @@ nnoremap <Leader>rh :set lines=43 columns=85<CR>
 nnoremap <Leader>rb :set lines=43 columns=171<CR>
 
 " Switch buffers
-" nnoremap <silent> ]b :bnext<CR>
-" nnoremap <silent> [b :bprevious<CR>
 nnoremap <silent> ]B :blast<CR>
 nnoremap <silent> [B :bfirst<CR>
-
-nnoremap <silent> <A-,> :bprevious<CR>
-nnoremap <silent> <A-.> :bnext<CR>
+nnoremap <silent> [b :bprevious<CR>
+nnoremap <silent> ]b :bnext<CR>
 
 " Expand %% to current directory path when in command mode
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
@@ -489,5 +448,5 @@ vnoremap <Leader>mi c**<Esc>P
 
 nnoremap <Leader>mb viwc****<Esc>hP
 nnoremap <Leader>mi viwc**<Esc>P
-" -----------------------------------------------------------------------------
 
+"------------------------------------------------------------------------------

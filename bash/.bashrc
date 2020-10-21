@@ -126,19 +126,40 @@ PROMPT_DIRTRIM=3
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 # custom aliases and exports
+export TERM=xterm-256color
+
 export VIMCONFIG=~/.vim
 export VIMDATA=~/.vim
-export DOTFILES=~/Dropbox/dotfiles
+export DOTFILES="$HOME/Dropbox/dotfiles"
+export COMPROG="$HOME/Dropbox/competitive_programming"
+export CODEFORCES="$COMPROG/codeforces"
+export MACROS="$COMPROG/macros"
+export CONTESTS="$COMPROG/contests"
+export ATCODER="$COMPROG/atcoder"
+export UVA="$COMPROG/uva"
+export USACO="$COMPROG/usaco"
 
-alias ll="ls -l"
+alias ll="ls -lah"
 alias la="ls -a"
 alias rm="rm -i"
+alias tmux="env TERM=xterm-256color tmux"
+alias gs="git status"
 
-alias vim="nvim"
+alias vim="vim"
 alias vi="nvim"
+alias rvim="vim -u NONE"
+alias pvim="vim -u $HOME/Desktop/projects/practical-vim/dnvim2-code/code/essential.vim"
 #alias emacs="emacs -nw" # start emacs in cmdline mode
 
-alias dotf="cd $DOTFILES"
+alias _df="cd $DOTFILES"
+alias _cp="cd $COMPROG"
+alias _cf="cd $CODEFORCES"
+alias _at="cd $ATCODER"
+alias _ma="cd $MACROS"
+alias _co="cd $CONTESTS"
+alias _oj="cd $UVA"
+alias _us="cd $USACO"
+alias _mkenv="cp -r $MACROS/* ."
 
 alias eb="vim ~/.bashrc"
 alias ev="vim $VIMCONFIG/vimrc"
@@ -151,7 +172,7 @@ alias pip="pip3"
 
 alias xup="xrdb ~/.Xresources" # update Xresources
 
-# use vim key bindings
+# use vi key bindings
 set -o emacs
 
 # colors in the manual {{{

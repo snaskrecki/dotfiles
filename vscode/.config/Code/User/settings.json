@@ -277,6 +277,5 @@
     "liveshare.languages.allowGuestCommandControl": true,
     "[typescript]": {
         "editor.defaultFormatter": "vscode.typescript-language-features"
-    },
-    "workbench.colorTheme": "Dracula Soft"
+    }
 }
