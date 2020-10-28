@@ -15,7 +15,7 @@
     "telemetry.enableCrashReporter": false,
     // instead opening only user settings, open default also
     "workbench.settings.useSplitJSON": false,
-    "editor.lineNumbers": "relative",
+    "editor.lineNumbers": "on",
     /*
      * Monospace Fonts
      */
@@ -34,7 +34,7 @@
    * Editor Font
    */
     "editor.fontFamily": "Dejavu Sans Mono",
-    "editor.fontSize": 15,
+    "editor.fontSize": 17,
     "editor.fontLigatures": false,
     "editor.fontWeight": "normal",
     "editor.lineHeight": 0,
@@ -277,5 +277,10 @@
     "liveshare.languages.allowGuestCommandControl": true,
     "[typescript]": {
         "editor.defaultFormatter": "vscode.typescript-language-features"
-    }
+    },
+    "code-runner.executorMap": {
+        "python": "python3",
+    },
+    "workbench.colorTheme": "One Dark Pro",
+    "window.zoomLevel": 0
 }

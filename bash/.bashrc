@@ -142,14 +142,22 @@ export USACO="$COMPROG/usaco"
 alias ll="ls -lah"
 alias la="ls -a"
 alias rm="rm -i"
-alias tmux="env TERM=xterm-256color tmux"
-alias gs="git status"
+# alias tmux="env TERM=xterm-256color tmux"
 
+# Git aliases
+alias gs="git status"
+alias ga="git add"
+alias gc="git commit"
+
+# Vim aliases
 alias vim="vim"
 alias vi="nvim"
-alias rvim="vim -u NONE"
-alias pvim="vim -u $HOME/Desktop/projects/practical-vim/dnvim2-code/code/essential.vim"
-#alias emacs="emacs -nw" # start emacs in cmdline mode
+alias rvim="vim -u NONE -N"
+alias pvim="vim -u $VIMCONFIG/essential.vim"
+#alias view="vim -R"
+
+# Emacs aliases
+alias emacs="emacs -nw" # start emacs in cmdline mode
 
 alias _df="cd $DOTFILES"
 alias _cp="cd $COMPROG"
@@ -160,15 +168,20 @@ alias _co="cd $CONTESTS"
 alias _oj="cd $UVA"
 alias _us="cd $USACO"
 alias _mkenv="cp -r $MACROS/* ."
+alias _vi="cd $VIMCONFIG"
 
-alias eb="vim ~/.bashrc"
-alias ev="vim $VIMCONFIG/vimrc"
+alias eb="vi ~/.bashrc"
+alias ev="vi $VIMCONFIG/vimrc"
 alias sb="source ~/.bashrc"
 alias ee="emacs ~/.emacs.d/init.el"
+alias ex="vi ~/.Xresources"
+alias py="python"
+alias py3="python3"
+alias tm="vi ~/.tmux.conf"
 
-alias python="python3"
-alias ipython="ipython3"
-alias pip="pip3"
+# alias python="python3"
+# alias ipython="ipython3"
+# alias pip="pip3"
 
 alias xup="xrdb ~/.Xresources" # update Xresources
 

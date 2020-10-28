@@ -1,5 +1,5 @@
 /*
- * Block comment 
+ * Block comment
  */
 #include <vector>
 
@@ -38,7 +38,7 @@ namespace foo {
     label:
       printf("Formatted string %d\n\g", localVar[0]);
       printf(R"**(Formatted raw-string %d\n)**", 1);
-      std::cout << (1 << 2) << std::endl;  
+      std::cout << (1 << 2) << std::endl;
 
     #define FOO(A) A
     #ifdef DEBUG
