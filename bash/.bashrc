@@ -125,12 +125,17 @@ PROMPT_DIRTRIM=3
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
-# custom aliases and exports
-export TERM=xterm-256color
+# this shoult be set by default
+# export TERM="xterm-256color"
+# export TERM="rxvt-unicode-256color"
+
+export VISUAL=vim
+export EDITOR=vim
 
 export VIMCONFIG=~/.vim
 export VIMDATA=~/.vim
 export DOTFILES="$HOME/Dropbox/dotfiles"
+
 export COMPROG="$HOME/Dropbox/competitive_programming"
 export CODEFORCES="$COMPROG/codeforces"
 export MACROS="$COMPROG/macros"
@@ -151,10 +156,12 @@ alias gc="git commit"
 
 # Vim aliases
 alias vim="vim"
-alias vi="nvim"
+alias vi="vim"
 alias rvim="vim -u NONE -N"
 alias pvim="vim -u $VIMCONFIG/essential.vim"
-#alias view="vim -R"
+alias pvi="pvim"
+alias rvi="rvim"
+alias view="vim -R"
 
 # Emacs aliases
 alias emacs="emacs -nw" # start emacs in cmdline mode
@@ -167,7 +174,7 @@ alias _ma="cd $MACROS"
 alias _co="cd $CONTESTS"
 alias _oj="cd $UVA"
 alias _us="cd $USACO"
-alias _mkenv="cp -r $MACROS/* ."
+alias _mkenv="cp -r $MACROS/* . && cp -r $MACROS/.vscode ."
 alias _vi="cd $VIMCONFIG"
 
 alias eb="vi ~/.bashrc"
@@ -177,7 +184,7 @@ alias ee="emacs ~/.emacs.d/init.el"
 alias ex="vi ~/.Xresources"
 alias py="python"
 alias py3="python3"
-alias tm="vi ~/.tmux.conf"
+alias et="vi ~/.tmux.conf"
 
 # alias python="python3"
 # alias ipython="ipython3"
