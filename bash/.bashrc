@@ -129,8 +129,11 @@ PROMPT_DIRTRIM=3
 # export TERM="xterm-256color"
 # export TERM="rxvt-unicode-256color"
 
+export PATH="$PATH:$HOME/bin"
+
 export VISUAL=vim
 export EDITOR=vim
+# export MANPAGER="/bin/sh -c \"col -b | view -c 'set ft=man nomod noma nolist' -\""
 
 export VIMCONFIG=~/.vim
 export VIMDATA=~/.vim
@@ -147,7 +150,6 @@ export USACO="$COMPROG/usaco"
 alias ll="ls -lah"
 alias la="ls -a"
 alias rm="rm -i"
-# alias tmux="env TERM=xterm-256color tmux"
 
 # Git aliases
 alias gs="git status"
@@ -162,6 +164,9 @@ alias pvim="vim -u $VIMCONFIG/essential.vim"
 alias pvi="pvim"
 alias rvi="rvim"
 alias view="vim -R"
+
+# Tmux aliases
+alias st="tmux source-file ~/.tmux.conf"
 
 # Emacs aliases
 alias emacs="emacs -nw" # start emacs in cmdline mode
@@ -178,10 +183,11 @@ alias _mkenv="cp -r $MACROS/* . && cp -r $MACROS/.vscode ."
 alias _vi="cd $VIMCONFIG"
 
 alias eb="vi ~/.bashrc"
+alias ebp="vi ~/.bash_profile"
 alias ev="vi $VIMCONFIG/vimrc"
 alias sb="source ~/.bashrc"
 alias ee="emacs ~/.emacs.d/init.el"
-alias ex="vi ~/.Xresources"
+alias ex="vi ~/.Xdefaults"
 alias py="python"
 alias py3="python3"
 alias et="vi ~/.tmux.conf"
@@ -190,7 +196,7 @@ alias et="vi ~/.tmux.conf"
 # alias ipython="ipython3"
 # alias pip="pip3"
 
-alias xup="xrdb ~/.Xresources" # update Xresources
+alias xup="xrdb ~/.Xdefaults" # update Xresources
 
 # use vi key bindings
 set -o emacs
@@ -206,9 +212,9 @@ export LESS_TERMCAP_mb=$'\e[1;32m'
 export LESS_TERMCAP_md=$'\e[1;32m'
 export LESS_TERMCAP_me=$'\e[0m'
 export LESS_TERMCAP_se=$'\e[0m'
-export LESS_TERMCAP_so=$'\e[01;35m'
+export LESS_TERMCAP_so=$'\e[01;33m'
 export LESS_TERMCAP_ue=$'\e[0m'
-export LESS_TERMCAP_us=$'\e[1;34m'
+export LESS_TERMCAP_us=$'\e[1;4;31m'
 # }}}
 
 # powerline-shell {{{
