@@ -1,0 +1,4 @@
+set editing-mode emacs
+set show-mode-in-prompt off
+set vi-ins-mode-string +
+set vi-cmd-mode-string :

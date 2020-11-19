@@ -36,7 +36,7 @@
     "editor.fontFamily": "Dejavu Sans Mono",
     "editor.fontSize": 17,
     "editor.fontLigatures": false,
-    "editor.fontWeight": "normal",
+    "editor.fontWeight": "500",
     "editor.lineHeight": 0,
     // turn off italics
     "editor.tokenColorCustomizations": {
@@ -219,6 +219,7 @@
     "[json]": {
         "editor.tabSize": 4,
         "editor.insertSpaces": true,
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
     },
     /*
    * HTML
@@ -281,6 +282,6 @@
     "code-runner.executorMap": {
         "python": "python3",
     },
-    "workbench.colorTheme": "One Dark Pro",
-    "window.zoomLevel": 0
+    "window.zoomLevel": 0,
+    "terminal.integrated.drawBoldTextInBrightColors": true
 }

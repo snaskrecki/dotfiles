@@ -18,7 +18,7 @@ set nocompatible
 " Attempt to determine the type of a file based on its name and possibly its
 " contents. Use this to allow intelligent auto-indenting for each filetype,
 " and for plugins that are filetype specific.
-filetype indent plugin on
+filetype plugin on
 
 " Enable syntax highlighting
 syntax on
@@ -51,6 +51,7 @@ Plug 'chriskempson/base16-vim'
 " Plug 'junegunn/fzf.vim'
 Plug 'preservim/nerdtree'
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'vimwiki/vimwiki'
 call plug#end()
 
 " ------------------------------------------------------------
@@ -77,6 +78,27 @@ let g:NERDTreeIgnore = []
 let g:NERDTreeStatusline = ''
 
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+" ------------------------------------------------------------
+" VimWiki
+"
+" Personal Wiki
+
+" let wiki_1 = {}
+" let wiki_1.path = '~/vimwiki'
+" let wiki_1.syntax = 'markdown'
+" let wiki_1.ext = '.md'
+" 
+" let g:vimwiki_list = [wiki_1]
+" 
+" let g:vimwiki_global_ext = 0
+
+let wiki_2 = {}
+let wiki_2.path = '$HOME/Dropbox/vimwiki'
+let wiki_2.syntax = 'default'
+let wiki_2.ext = '.wiki'
+
+let g:vimwiki_list = [wiki_2]
 
 " ------------------------------------------------------------
 " Vim Airline {{{1
@@ -118,7 +140,7 @@ set background=dark
 let g:solarized_italics = 0
 
 " Use a solarized theme that supports true color
-colorscheme solarized8
+colorscheme base16-onedark
 
 " Onedark {{{1
 "
@@ -296,8 +318,8 @@ set expandtab
 " When opening a new line and no filetype-specific indenting is enabled, keep
 " the same indent as the line you're currently on. Useful for READMEs, etc.
 set autoindent
-set smartindent
-set smarttab
+"set smartindent
+" set smarttab
 
 " Round indents to the next shiftwidth multiple
 set shiftround

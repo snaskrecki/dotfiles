@@ -131,12 +131,16 @@ PROMPT_DIRTRIM=3
 
 export PATH="$PATH:$HOME/bin"
 
-export VISUAL=vim
-export EDITOR=vim
+export VISUAL=vi
+export EDITOR=vi
 # export MANPAGER="/bin/sh -c \"col -b | view -c 'set ft=man nomod noma nolist' -\""
+
+# use emacs key bindings (default)
+set -o emacs
 
 export VIMCONFIG=~/.vim
 export VIMDATA=~/.vim
+export VIMWIKI="$HOME/Dropbox/vimwiki"
 export DOTFILES="$HOME/Dropbox/dotfiles"
 
 export COMPROG="$HOME/Dropbox/competitive_programming"
@@ -146,6 +150,7 @@ export CONTESTS="$COMPROG/contests"
 export ATCODER="$COMPROG/atcoder"
 export UVA="$COMPROG/uva"
 export USACO="$COMPROG/usaco"
+export LEETCODE="$COMPROG/leetcode"
 
 alias ll="ls -lah"
 alias la="ls -a"
@@ -159,14 +164,19 @@ alias gc="git commit"
 # Vim aliases
 alias vim="vim"
 alias vi="vim"
-alias rvim="vim -u NONE -N"
+alias rvim="vim -u NONE -N" # :s/NONE/NORC/g
+alias rvi="rvim"
 alias pvim="vim -u $VIMCONFIG/essential.vim"
 alias pvi="pvim"
-alias rvi="rvim"
 alias view="vim -R"
 
 # Tmux aliases
-alias st="tmux source-file ~/.tmux.conf"
+alias tsf="tmux source-file ~/.tmux.conf"
+alias cls="clear"
+alias t="tmux"
+alias ta="t a -t"
+alias tls="t ls"
+alias tn="t new -t"
 
 # Emacs aliases
 alias emacs="emacs -nw" # start emacs in cmdline mode
@@ -179,6 +189,7 @@ alias _ma="cd $MACROS"
 alias _co="cd $CONTESTS"
 alias _oj="cd $UVA"
 alias _us="cd $USACO"
+alias _lc="cd $LEETCODE"
 alias _mkenv="cp -r $MACROS/* . && cp -r $MACROS/.vscode ."
 alias _vi="cd $VIMCONFIG"
 
@@ -191,15 +202,15 @@ alias ex="vi ~/.Xdefaults"
 alias py="python"
 alias py3="python3"
 alias et="vi ~/.tmux.conf"
+alias ei="vi ~/.inputrc"
+alias ew="vi $VIMWIKI/index.wiki"
+alias _cw="cd $VIMWIKI"
 
 # alias python="python3"
 # alias ipython="ipython3"
 # alias pip="pip3"
 
 alias xup="xrdb ~/.Xdefaults" # update Xresources
-
-# use vi key bindings
-set -o emacs
 
 # colors in the manual {{{
 # 31 red
