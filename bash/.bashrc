@@ -156,6 +156,10 @@ alias ll="ls -lah"
 alias la="ls -a"
 alias rm="rm -i"
 
+# man settings
+export MANPAGER='nvim +Man!'
+# export MANWIDTH=999
+
 # Git aliases
 alias gs="git status"
 alias ga="git add"
@@ -163,9 +167,11 @@ alias gc="git commit"
 
 # Vim aliases
 alias vim="vim"
-alias vi="vim"
-alias rvim="vim -u NONE -N" # :s/NONE/NORC/g
+alias vi="nvim"
+alias rvim="vim -u NONE -N" 
 alias rvi="rvim"
+alias bvim="vim -u NORC -N"
+alias bvi="bvim"
 alias pvim="vim -u $VIMCONFIG/essential.vim"
 alias pvi="pvim"
 alias view="vim -R"
@@ -179,7 +185,7 @@ alias tls="t ls"
 alias tn="t new -t"
 
 # Emacs aliases
-alias emacs="emacs -nw" # start emacs in cmdline mode
+# alias emacs="emacs -nw" # start emacs in cmdline mode
 
 alias _df="cd $DOTFILES"
 alias _cp="cd $COMPROG"
@@ -198,19 +204,19 @@ alias ebp="vi ~/.bash_profile"
 alias ev="vi $VIMCONFIG/vimrc"
 alias sb="source ~/.bashrc"
 alias ee="emacs ~/.emacs.d/init.el"
-alias ex="vi ~/.Xdefaults"
+alias ex="vi ~/.Xresources"
 alias py="python"
 alias py3="python3"
 alias et="vi ~/.tmux.conf"
 alias ei="vi ~/.inputrc"
-alias ew="vi $VIMWIKI/index.wiki"
-alias _cw="cd $VIMWIKI"
+alias ew="vi $VIMWIKI/index.md"
+alias _vw="cd $VIMWIKI"
 
 # alias python="python3"
 # alias ipython="ipython3"
 # alias pip="pip3"
 
-alias xup="xrdb ~/.Xdefaults" # update Xresources
+alias xup="xrdb ~/.Xresources" # update Xresources
 
 # colors in the manual {{{
 # 31 red
@@ -219,13 +225,13 @@ alias xup="xrdb ~/.Xdefaults" # update Xresources
 # 34 blue
 # 35 purple
 # 36 cyan
-export LESS_TERMCAP_mb=$'\e[1;32m'
-export LESS_TERMCAP_md=$'\e[1;32m'
-export LESS_TERMCAP_me=$'\e[0m'
-export LESS_TERMCAP_se=$'\e[0m'
-export LESS_TERMCAP_so=$'\e[01;33m'
-export LESS_TERMCAP_ue=$'\e[0m'
-export LESS_TERMCAP_us=$'\e[1;4;31m'
+# export LESS_TERMCAP_mb=$'\e[1;32m'
+# export LESS_TERMCAP_md=$'\e[1;32m'
+# export LESS_TERMCAP_me=$'\e[0m'
+# export LESS_TERMCAP_se=$'\e[0m'
+# export LESS_TERMCAP_so=$'\e[01;33m'
+# export LESS_TERMCAP_ue=$'\e[0m'
+# export LESS_TERMCAP_us=$'\e[1;4;31m'
 # }}}
 
 # powerline-shell {{{

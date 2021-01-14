@@ -36,7 +36,7 @@
     "editor.fontFamily": "Dejavu Sans Mono",
     "editor.fontSize": 17,
     "editor.fontLigatures": false,
-    "editor.fontWeight": "500",
+    "editor.fontWeight": "normal",
     "editor.lineHeight": 0,
     // turn off italics
     "editor.tokenColorCustomizations": {
@@ -154,7 +154,7 @@
    * Terminal Font
    */
     "terminal.integrated.fontFamily": "Dejavu Sans Mono",
-    "terminal.integrated.fontSize": 15,
+    "terminal.integrated.fontSize": 17,
     "terminal.integrated.fontWeight": "normal",
     "terminal.integrated.lineHeight": 0,
     /*

@@ -52,7 +52,31 @@ Plug 'chriskempson/base16-vim'
 Plug 'preservim/nerdtree'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'vimwiki/vimwiki'
+" Plug 'davidhalter/jedi-vim'
+" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" Plug 'zchee/deoplete-jedi'
 call plug#end()
+
+" ------------------------------------------------------------
+" Deoplete {{{1
+" 
+" Auto-completion engine
+
+let g:deoplete#enable_at_startup = 1
+
+" maximum candidate window length
+" call deoplete#custom#source('_', 'max_menu_width', 80)
+
+" ------------------------------------------------------------
+" Jedi {{{1
+" 
+" Auto-completion engine
+
+" disable autocompletion, because we use deoplete for completion
+let g:jedi#completions_enabled = 0
+
+" open the go-to function in split, not another buffer
+let g:jedi#use_splits_not_buffers = "right"
 
 " ------------------------------------------------------------
 " Matchit {{{1
@@ -84,21 +108,22 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 "
 " Personal Wiki
 
-" let wiki_1 = {}
-" let wiki_1.path = '~/vimwiki'
-" let wiki_1.syntax = 'markdown'
-" let wiki_1.ext = '.md'
-" 
-" let g:vimwiki_list = [wiki_1]
-" 
-" let g:vimwiki_global_ext = 0
+let wiki_1 = {}
+let wiki_1.path = '~/Dropbox/vimwiki'
+let wiki_1.syntax = 'markdown'
+let wiki_1.ext = '.md'
+let wiki_1.index = 'index'
 
-let wiki_2 = {}
-let wiki_2.path = '$HOME/Dropbox/vimwiki'
-let wiki_2.syntax = 'default'
-let wiki_2.ext = '.wiki'
+let g:vimwiki_list = [wiki_1]
+ 
+let g:vimwiki_global_ext = 0
 
-let g:vimwiki_list = [wiki_2]
+" let wiki_2 = {}
+" let wiki_2.path = '~/Dropbox/vimwiki'
+" let wiki_2.syntax = 'default'
+" let wiki_2.ext = '.wiki'
+" 
+" let g:vimwiki_list = [wiki_1,wiki_2]
 
 " ------------------------------------------------------------
 " Vim Airline {{{1
@@ -120,15 +145,15 @@ let g:airline_powerline_fonts = 1
 " Color Theme Settings
 
 " number of colors in the terminal
-" set t_Co=16
+set t_Co=16
 
 " When on, uses |highlight-guifg| and |highlight-guibg| attributes in
 " the terminal (thus using 24-bit color).
-if exists('+termguicolors')
-  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-  set termguicolors
-endif
+" if exists('+termguicolors')
+"   let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+"   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+"   set termguicolors
+" endif
 
 " This command switches on syntax highlighting:
 syntax enable
@@ -140,7 +165,9 @@ set background=dark
 let g:solarized_italics = 0
 
 " Use a solarized theme that supports true color
-colorscheme base16-onedark
+" colorscheme base16-solarized-dark
+" colorscheme solarized8
+colorscheme solarized
 
 " Onedark {{{1
 "
@@ -287,7 +314,7 @@ set undofile
 " Text wrapping
 set wrap
 set linebreak
-set textwidth=80
+set textwidth=0
 
 " Don't use folds
 set foldmethod=manual
@@ -331,12 +358,13 @@ set shiftround
 
 " Apply the following settings only when in GUI mode
 if has("gui_running")
-  set guifont=Dejavu\ Sans\ Mono\ 13 
+  set guifont=DejaVuSansMono\ Nerd\ Font\ Mono\ 13
+  " set guifont=MesloLGS\ Nerd\ Font\ Mono\ 13
   set guifontwide=
-  set guioptions-=T         " Remove toolbar
-  set guioptions-=m         " Remove menubar
-  set guioptions-=r         " Remove scrollbar
-  set lines=999 columns=999 " Maximize GUI window
+  " set guioptions-=T         " Remove toolbar
+  " set guioptions-=m         " Remove menubar
+  " set guioptions-=r         " Remove scrollbar
+  " set lines=999 columns=999 " Maximize GUI window
 endif
 
 "------------------------------------------------------------
