@@ -174,7 +174,7 @@
     "editor.rulers": [
         80,120
     ],
-    "editor.wordWrap": "wordWrapColumn",
+    "editor.wordWrap": "off",
     "editor.wordWrapColumn": 120,
     "editor.wrappingIndent": "same",
     /*
@@ -185,7 +185,7 @@
     "editor.trimAutoWhitespace": true,
     "editor.formatOnPaste": false,
     "editor.formatOnSave": false,
-    "editor.renameOnType": true,
+    //"editor.renameOnType": true,
     //"editor.defaultFormatter": "esbenp.prettier-vscode",
     /*
    * Prettier
@@ -283,5 +283,6 @@
         "python": "python3",
     },
     "window.zoomLevel": 0,
-    "terminal.integrated.drawBoldTextInBrightColors": true
+    "terminal.integrated.drawBoldTextInBrightColors": true,
+    "workbench.colorTheme": "Solarized Dark"
 }

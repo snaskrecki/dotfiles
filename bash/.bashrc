@@ -133,7 +133,6 @@ export PATH="$PATH:$HOME/bin"
 
 export VISUAL=vi
 export EDITOR=vi
-# export MANPAGER="/bin/sh -c \"col -b | view -c 'set ft=man nomod noma nolist' -\""
 
 # use emacs key bindings (default)
 set -o emacs
@@ -152,8 +151,6 @@ export UVA="$COMPROG/uva"
 export USACO="$COMPROG/usaco"
 export LEETCODE="$COMPROG/leetcode"
 
-alias ll="ls -lah"
-alias la="ls -a"
 alias rm="rm -i"
 
 # man settings
@@ -161,9 +158,9 @@ export MANPAGER='nvim +Man!'
 # export MANWIDTH=999
 
 # Git aliases
-alias gs="git status"
-alias ga="git add"
-alias gc="git commit"
+# alias gs="git status"
+# alias ga="git add"
+# alias gc="git commit"
 
 # Vim aliases
 alias vim="vim"
@@ -198,6 +195,7 @@ alias _us="cd $USACO"
 alias _lc="cd $LEETCODE"
 alias _mkenv="cp -r $MACROS/* . && cp -r $MACROS/.vscode ."
 alias _vi="cd $VIMCONFIG"
+alias _pg="cd $HOME/Desktop/playground"
 
 alias eb="vi ~/.bashrc"
 alias ebp="vi ~/.bash_profile"
@@ -247,3 +245,6 @@ alias xup="xrdb ~/.Xresources" # update Xresources
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# turn off annoying beep when hitting backspace
+bind 'set bell-style none'
