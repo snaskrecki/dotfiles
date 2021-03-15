@@ -1,288 +1,235 @@
 {
-    /*
-     * Vim Emulation Settings
-     */
-    "vim.leader": "<space>",
-    "vim.incsearch": true,
-    "vim.useSystemClipboard": true,
-    "vim.hlsearch": true,
-    "vim.useCtrlKeys": true,
-    "vim.easymotion": true,
-    // show welcome page at startup
-    "workbench.startupEditor": "welcomePage",
-    // telemetry data policy
-    "telemetry.enableTelemetry": false,
-    "telemetry.enableCrashReporter": false,
-    // instead opening only user settings, open default also
-    "workbench.settings.useSplitJSON": false,
-    "editor.lineNumbers": "on",
-    /*
-     * Monospace Fonts
-     */
-        /*[
-        Dejavu Sans Mono,
-        Menlo,
-        Ubuntu Mono,
-        Consolas,
-        Source Code Pro,
-        Fira Code,
-        Consolas,
-        Inconsolata,
-        Monaco
-    ]*/
-    /*
-   * Editor Font
-   */
-    "editor.fontFamily": "Dejavu Sans Mono",
-    "editor.fontSize": 17,
-    "editor.fontLigatures": false,
-    "editor.fontWeight": "normal",
-    "editor.lineHeight": 0,
-    // turn off italics
-    "editor.tokenColorCustomizations": {
-        "textMateRules": [
-            {
-                "scope": [
-                    "comment",
-                    "comment.block",
-                    "comment.block.documentation",
-                    "comment.line",
-                    "constant",
-                    "constant.character",
-                    "constant.character.escape",
-                    "constant.numeric",
-                    "constant.numeric.integer",
-                    "constant.numeric.float",
-                    "constant.numeric.hex",
-                    "constant.numeric.octal",
-                    "constant.other",
-                    "constant.regexp",
-                    "constant.rgb-value",
-                    "emphasis",
-                    "entity",
-                    "entity.name",
-                    "entity.name.class",
-                    "entity.name.function",
-                    "entity.name.method",
-                    "entity.name.section",
-                    "entity.name.selector",
-                    "entity.name.tag",
-                    "entity.name.type",
-                    "entity.other",
-                    "entity.other.attribute-name",
-                    "entity.other.inherited-class",
-                    "invalid",
-                    "invalid.deprecated",
-                    "invalid.illegal",
-                    "keyword",
-                    "keyword.control",
-                    "keyword.operator",
-                    "keyword.operator.new",
-                    "keyword.operator.assignment",
-                    "keyword.operator.arithmetic",
-                    "keyword.operator.logical",
-                    "keyword.other",
-                    "markup",
-                    "markup.bold",
-                    "markup.changed",
-                    "markup.deleted",
-                    "markup.heading",
-                    "markup.inline.raw",
-                    "markup.inserted",
-                    "markup.italic",
-                    "markup.list",
-                    "markup.list.numbered",
-                    "markup.list.unnumbered",
-                    "markup.other",
-                    "markup.quote",
-                    "markup.raw",
-                    "markup.underline",
-                    "markup.underline.link",
-                    "meta",
-                    "meta.block",
-                    "meta.cast",
-                    "meta.class",
-                    "meta.function",
-                    "meta.function-call",
-                    "meta.preprocessor",
-                    "meta.return-type",
-                    "meta.selector",
-                    "meta.tag",
-                    "meta.type.annotation",
-                    "meta.type",
-                    "punctuation.definition.string.begin",
-                    "punctuation.definition.string.end",
-                    "punctuation.separator",
-                    "punctuation.separator.continuation",
-                    "punctuation.terminator",
-                    "storage",
-                    "storage.modifier",
-                    "storage.type",
-                    "string",
-                    "string.interpolated",
-                    "string.other",
-                    "string.quoted",
-                    "string.quoted.double",
-                    "string.quoted.other",
-                    "string.quoted.single",
-                    "string.quoted.triple",
-                    "string.regexp",
-                    "string.unquoted",
-                    "strong",
-                    "support",
-                    "support.class",
-                    "support.constant",
-                    "support.function",
-                    "support.other",
-                    "support.type",
-                    "support.type.property-name",
-                    "support.variable",
-                    "variable",
-                    "variable.language",
-                    "variable.name",
-                    "variable.other",
-                    "variable.other.readwrite",
-                    "variable.parameter"
-                ],
-                "settings": {
-                    "fontStyle": ""
-                }
-            }
-        ]
-    },
-    /*
-   * Terminal Font
-   */
-    "terminal.integrated.fontFamily": "Dejavu Sans Mono",
-    "terminal.integrated.fontSize": 17,
-    "terminal.integrated.fontWeight": "normal",
-    "terminal.integrated.lineHeight": 0,
-    /*
-   * Indentation
-   */
+  /***************************************************************************
+   * TELEMETRY                                                               *
+   ***************************************************************************/
+  "telemetry.enableTelemetry": false,
+  "telemetry.enableCrashReporter": false,
+  /***************************************************************************
+   * STATUS INFO                                                             *
+   ***************************************************************************/
+  "editor.lineNumbers": "on",
+  /***************************************************************************
+   * VIM EXTENSION                                                           *
+   ***************************************************************************/
+  "vim.leader": "<space>",
+  "vim.incsearch": true,
+  "vim.ignorecase": true,
+  "vim.useSystemClipboard": true,
+  "vim.hlsearch": false,
+  "vim.useCtrlKeys": true,
+  "vim.easymotion": true,
+  "vim.textwidth": 80,
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": [
+        "<leader>",
+        "e",
+        "v"
+      ],
+      "commands": [
+        ":edit ~/.config/Code/User/settings.json"
+      ]
+    }
+  ],
+  /***************************************************************************
+   * WORKBENCH                                                               *
+   ***************************************************************************/
+  "workbench.startupEditor": "welcomePage",
+  "workbench.settings.useSplitJSON": false,
+  /***************************************************************************
+   * MONOSPACED FONTS                                                        *
+   ***************************************************************************/
+  // Dejavu Sans Mono
+  // Menlo
+  // Meslo
+  // Ubuntu Mono
+  // Consolas
+  // Inconsolata
+  // Source Code Pro
+  // Fira Code
+  // Monaco
+  // JetBrains Mono
+  /***************************************************************************
+   * EDITOR FONT                                                             *
+   ***************************************************************************/
+  "editor.fontFamily": "Dejavu Sans Mono",
+  "editor.fontSize": 17,
+  "editor.fontWeight": "normal",
+  "editor.fontLigatures": false,
+  "editor.lineHeight": 0,
+  /***************************************************************************
+   * TERMINAL FONT                                                           *
+   ***************************************************************************/
+  "terminal.integrated.fontFamily": "Dejavu Sans Mono",
+  "terminal.integrated.fontSize": 17,
+  "terminal.integrated.fontWeight": "normal",
+  "terminal.integrated.lineHeight": 0,
+  "terminal.integrated.drawBoldTextInBrightColors": true,
+  /***************************************************************************
+   * INDENTATION                                                             *
+   ***************************************************************************/
+  "editor.tabSize": 4,
+  "editor.insertSpaces": true,
+  "editor.detectIndentation": false,
+  "editor.autoIndent": "advanced",
+  /***************************************************************************
+   * AUTO COMPLETION                                                         *
+   ***************************************************************************/
+  "editor.wordBasedSuggestions": true,
+  "editor.suggest.insertMode": "replace",
+  "editor.linkedEditing": true,
+  /***************************************************************************
+   * LINE WRAPPING                                                           *
+   ***************************************************************************/
+  "editor.rulers": [
+    80,
+    120
+  ],
+  "editor.wordWrap": "wordWrapColumn",
+  "editor.wordWrapColumn": 80,
+  "editor.wrappingIndent": "none",
+  // the quick brown fox jumped over the lazy dog the quick brown fox jumped over the lazy dog the quick brown fox jumped over the lazy dog the quick brown fox jumped over the lazy dog the quick brown fox jumped over the lazy dog the quick brown fox jumped over the lazy dog the quick brown fox jumped over the lazy dog the quick brown fox jumped over the lazy dog the quick brown fox jumped over the lazy dog the quick brown fox jumped over the lazy dog the quick brown fox jumped over the lazy dog the quick brown fox jumped over the lazy dog the quick brown fox jumped over the lazy dog the quick brown fox jumped over the lazy dog the quick brown fox jumped over the lazy dog the quick brown fox jumped over the lazy dog the quick brown fox jumped over the lazy dog the quick brown fox jumped over the lazy dog the quick brown fox jumped over the lazy dog
+  /***************************************************************************
+   * FORMATTING                                                              *
+   ***************************************************************************/
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.trimAutoWhitespace": true,
+  "editor.formatOnPaste": false,
+  "editor.formatOnSave": false,
+  "files.autoSave": "onFocusChange",
+  "files.trimTrailingWhitespace": true,
+  /***************************************************************************
+   * PRETTIER EXTENSION                                                      *
+   ***************************************************************************/
+  "prettier.useTabs": false,
+  "prettier.tabWidth": 2,
+  "prettier.singleQuote": false,
+  "prettier.arrowParens": "avoid",
+  "prettier.printWidth": 120,
+  /***************************************************************************
+   * BRACKET PAIR COLORIZER 2 EXTENSION                                      *
+   ***************************************************************************/
+  "bracket-pair-colorizer-2.colors": [
+    "Gold", //
+    "Orchid",
+    "LightSkyBlue"
+  ],
+  "bracket-pair-colorizer-2.colorMode": "Consecutive",
+  "bracket-pair-colorizer-2.forceUniqueOpeningColor": false,
+  /***************************************************************************
+   * JS                                                                      *
+   ***************************************************************************/
+  "[javascript]": {
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true,
+    "editor.suggest.insertMode": "replace",
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.wordWrapColumn": 120
+  },
+  /***************************************************************************
+   * JSON                                                                   *
+   ***************************************************************************/
+  "[json]": {
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true,
+    "editor.suggest.insertMode": "replace",
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.wordWrapColumn": 120
+  },
+  /***************************************************************************
+   * JSON WITH COMMENTS                                                      *
+   ***************************************************************************/
+  "[jsonc]": {
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true,
+    "editor.suggest.insertMode": "replace",
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.wordWrapColumn": 120
+  },
+  /***************************************************************************
+   * TS                                                                      *
+   ***************************************************************************/
+  "[typescript]": {
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true,
+    "editor.suggest.insertMode": "replace",
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.wordWrapColumn": 120
+  },
+  /***************************************************************************
+   * HTML                                                                    *
+   ***************************************************************************/
+  "[html]": {
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true,
+    "editor.suggest.insertMode": "replace",
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.wordWrapColumn": 120,
+    "editor.linkedEditing": true
+  },
+  "html.suggest.html5": true,
+  "html.autoClosingTags": true,
+  "html.validate.scripts": true,
+  "html.validate.styles": true,
+  /***************************************************************************
+   * CSS                                                                     *
+   ***************************************************************************/
+  "[css]": {
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true,
+    "editor.suggest.insertMode": "replace",
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.wordWrapColumn": 120
+  },
+  /***************************************************************************
+   * PYTHON                                                                 *
+   ***************************************************************************/
+  "[python]": {
     "editor.tabSize": 4,
     "editor.insertSpaces": true,
-    "editor.detectIndentation": false,
-    /*
-   * Auto Completion
-   */
-    "editor.wordBasedSuggestions": true,
     "editor.suggest.insertMode": "replace",
-    /*
-   * Line Wrapping
-   */
-    "editor.rulers": [
-        80,120
-    ],
-    "editor.wordWrap": "off",
-    "editor.wordWrapColumn": 120,
-    "editor.wrappingIndent": "same",
-    /*
-   * Auto Formatting
-   */
-    "files.autoSave": "onFocusChange",
-    "files.trimTrailingWhitespace": true,
-    "editor.trimAutoWhitespace": true,
-    "editor.formatOnPaste": false,
-    "editor.formatOnSave": false,
-    //"editor.renameOnType": true,
-    //"editor.defaultFormatter": "esbenp.prettier-vscode",
-    /*
-   * Prettier
-   */
-    "prettier.useTabs": false,
-    "prettier.tabWidth": 4,
-    "prettier.singleQuote": true,
-    "prettier.arrowParens": "avoid",
-    "prettier.printWidth": 120,
-    /*
-   * Bracket Pair Colorizer 2
-   */
-    "bracket-pair-colorizer-2.colors": [
-        "Gold", //
-        "Orchid",
-        "LightSkyBlue"
-    ],
-    "bracket-pair-colorizer-2.colorMode": "Consecutive",
-    "bracket-pair-colorizer-2.forceUniqueOpeningColor": false,
-    /*
-   * JavaScript
-   */
-    "[javascript]": {
-        "editor.tabSize": 4,
-        "editor.insertSpaces": true,
-    },
-    "[jsonc]": {
-        "editor.tabSize": 4,
-        "editor.insertSpaces": true,
-    },
-    "[json]": {
-        "editor.tabSize": 4,
-        "editor.insertSpaces": true,
-        "editor.defaultFormatter": "esbenp.prettier-vscode",
-    },
-    /*
-   * HTML
-   */
-    "[html]": {
-        "editor.tabSize": 4,
-        "editor.insertSpaces": true,
-        "editor.defaultFormatter": "vscode.html-language-features"
-    },
-    /*
-   * CSS
-   */
-    "[css]": {
-        "editor.suggest.insertMode": "replace",
-        "editor.tabSize": 4,
-        "editor.insertSpaces": true,
-    },
-    /*
-   * C/C++
-   */
-    "C_Cpp.intelliSenseEngine": "Default",
-    "C_Cpp.enhancedColorization": "Enabled",
-    "C_Cpp.loggingLevel": "Information",
-    //"C_Cpp.clang_format_path": "/usr/bin/clang-format",
-    "C_Cpp.intelliSenseEngineFallback": "Enabled",
-    //"C_Cpp.clang_format_fallbackStyle": "LLVM",
-    //
-    "[cpp]": {
-        "editor.tabSize": 4,
-        "editor.insertSpaces": true
-    },
-    //
-    "[c]": {
-        "editor.tabSize": 4,
-        "editor.insertSpaces": true,
-    },
-    // Apply C/C++ settings to *.cu files
-    "files.associations": {
-        "*.cu": "cpp"
-    },
-    "[python]": {
-        "editor.tabSize": 4,
-        "editor.insertSpaces": true,
-        "editor.defaultFormatter": "ms-python.python"
-    },
-    "C_Cpp.updateChannel": "Insiders",
-    //
-    "[shellscript]": {
-        "files.eol": "\n",
-        "editor.tabSize": 4,
-        "editor.insertSpaces": true,
-    },
-    "workbench.iconTheme": "vscode-icons",
-    "liveshare.allowGuestDebugControl": true,
-    "liveshare.allowGuestTaskControl": true,
-    "liveshare.languages.allowGuestCommandControl": true,
-    "[typescript]": {
-        "editor.defaultFormatter": "vscode.typescript-language-features"
-    },
-    "code-runner.executorMap": {
-        "python": "python3",
-    },
-    "window.zoomLevel": 0,
-    "terminal.integrated.drawBoldTextInBrightColors": true,
-    "workbench.colorTheme": "Solarized Dark"
+    "editor.defaultFormatter": "ms-python.python"
+  },
+  /***************************************************************************
+   * SHELL SCRIPT                                                          *
+   ***************************************************************************/
+  "[shellscript]": {
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true,
+    "editor.suggest.insertMode": "replace",
+  },
+  /***************************************************************************
+   * C / C++                                                                *
+   ***************************************************************************/
+  "C_Cpp.intelliSenseEngine": "Default",
+  "C_Cpp.enhancedColorization": "Enabled",
+  "C_Cpp.loggingLevel": "Information",
+  //"C_Cpp.clang_format_path": "/usr/bin/clang-format",
+  "C_Cpp.intelliSenseEngineFallback": "Enabled",
+  //"C_Cpp.clang_format_fallbackStyle": "LLVM",
+  "C_Cpp.updateChannel": "Insiders",
+  //
+  "[cpp]": {
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true
+  },
+  //
+  "[c]": {
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true
+  },
+  // Apply C/C++ settings to *.cu files
+  "files.associations": {
+    "*.cu": "cpp"
+  },
+  "liveshare.allowGuestDebugControl": true,
+  "liveshare.allowGuestTaskControl": true,
+  "liveshare.languages.allowGuestCommandControl": true,
+  "code-runner.executorMap": {
+    "python": "python3"
+  },
+  "window.zoomLevel": 0,
+  "workbench.iconTheme": "vscode-icons",
+  "debug.allowBreakpointsEverywhere": true,
+  "workbench.colorTheme": "One Dark Pro",
 }

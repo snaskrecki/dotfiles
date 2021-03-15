@@ -29,11 +29,16 @@ syntax on
 " These enhance vim experience
 
 " download vim-plug if not already present
-if ! filereadable(system('echo -n "${XDG_CONFIG_HOME:-$HOME}/.vim/autoload/plug.vim"'))
+if !filereadable(expand("~/.vim/autoload/plug.vim"))
 	echo "Downloading junegunn/vim-plug to manage plugins..."
 	silent !mkdir -p ${XDG_CONFIG_HOME:-$HOME}/.vim/autoload/
 	silent !curl "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim" > ${XDG_CONFIG_HOME:-$HOME}/.vim/autoload/plug.vim
 	autocmd VimEnter * PlugInstall
+endif
+
+if filereadable(expand("~/.vim/autoload/plug.vim"))
+	" echo "Downloading junegunn/vim-plug to manage plugins..."
+	" silent !curl "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim" --create-dirs -fLo expand("~/tmp/abc/plug.vim")
 endif
 
 " activate plugins
@@ -52,31 +57,7 @@ Plug 'chriskempson/base16-vim'
 Plug 'preservim/nerdtree'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'vimwiki/vimwiki'
-" Plug 'davidhalter/jedi-vim'
-" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-" Plug 'zchee/deoplete-jedi'
 call plug#end()
-
-" ------------------------------------------------------------
-" Deoplete {{{1
-" 
-" Auto-completion engine
-
-let g:deoplete#enable_at_startup = 1
-
-" maximum candidate window length
-" call deoplete#custom#source('_', 'max_menu_width', 80)
-
-" ------------------------------------------------------------
-" Jedi {{{1
-" 
-" Auto-completion engine
-
-" disable autocompletion, because we use deoplete for completion
-let g:jedi#completions_enabled = 0
-
-" open the go-to function in split, not another buffer
-let g:jedi#use_splits_not_buffers = "right"
 
 " ------------------------------------------------------------
 " Matchit {{{1
@@ -130,52 +111,17 @@ let g:vimwiki_global_ext = 0
 "
 " Use colorful powerline as a status bar
 
-" tabline at the top
 let g:airline#extensions#tabline#enabled = 1
-
-" Use Powerline symbols
 let g:airline_powerline_fonts = 1
-
-" Use specific theme for air-line colors
-" let g:airline_theme='gruvbox'
 
 "------------------------------------------------------------
 " Color Theme {{{1
 "
-" Color Theme Settings
+" Custom syntax highlighting colors
 
-" number of colors in the terminal
-set t_Co=16
-
-" When on, uses |highlight-guifg| and |highlight-guibg| attributes in
-" the terminal (thus using 24-bit color).
-" if exists('+termguicolors')
-"   let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-"   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-"   set termguicolors
-" endif
-
-" This command switches on syntax highlighting:
 syntax enable
-
-" Use a dark background
 set background=dark
-
-" colorscheme options need to go before setting the colorscheme
-let g:solarized_italics = 0
-
-" Use a solarized theme that supports true color
-" colorscheme base16-solarized-dark
-" colorscheme solarized8
 colorscheme solarized
-
-" Onedark {{{1
-"
-" options
-
-" let g:onedark_hide_endofbuffer=0
-" let g:onedark_termcolors=256
-" let g:onedark_terminal_italics=0
 
 "------------------------------------------------------------
 " Must have options {{{1
@@ -214,9 +160,7 @@ set showcmd
 " Highlight searches (use <C-L> to temporarily turn off highlighting; see the
 " mapping of <C-L> below)
 set nohlsearch
-
 set incsearch
-set noshowmatch
 
 " Modelines have historically been a source of security vulnerabilities. As
 " such, it may be a good idea to disable them and use the securemodelines
@@ -267,6 +211,8 @@ set visualbell
 " is unset, this does nothing.
 set t_vb=
 
+set noerrorbells
+
 " Enable use of the mouse for all modes
 set mouse=a
 
@@ -300,16 +246,17 @@ set encoding=UTF-8
 
 " Show non visible characters
 set nolist
-set listchars=tab:▸\ ,eol:¬
+set listchars=tab:>-,nbsp:+,trail:-,eol:$
 
 " Don't create backup / swap files
 set nobackup
 set nowritebackup
 set noswapfile
+set noundofile
 
 " Create undo file in vim folder
-set undodir=~/.vim/undodir
-set undofile
+" set undodir=~/.vim/undodir
+" set undofile
 
 " Text wrapping
 set wrap
@@ -360,7 +307,7 @@ set shiftround
 if has("gui_running")
   set guifont=DejaVuSansMono\ Nerd\ Font\ Mono\ 13
   " set guifont=MesloLGS\ Nerd\ Font\ Mono\ 13
-  set guifontwide=
+  " set guifontwide=
   " set guioptions-=T         " Remove toolbar
   " set guioptions-=m         " Remove menubar
   " set guioptions-=r         " Remove scrollbar
@@ -376,9 +323,12 @@ endif
 let mapleader       =" "
 let maplocalleader  ="\\"
 
+inoremap jk <ESC>
+inoremap jj <ESC>
+
 " Clear highlighting
 " nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
-nnoremap <silent> <Leader>th :set hlsearch!<CR>
+" nnoremap <silent> <Leader>th :set hlsearch!<CR>
 
 if empty(mapcheck('<C-U>', 'i'))
   inoremap <C-U> <C-G>u<C-U>
@@ -400,25 +350,20 @@ nnoremap <silent> <C-j> :TmuxNavigateDown<cr>
 nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
 nnoremap <silent> <C-\> :TmuxNavigatePrevious<
-
 nnoremap <silent> <Leader>nt :NERDTreeToggle<CR>
 nnoremap <silent> <Leader>nf :NERDTreeFind<CR>
 
+" $MYVIMC points to init.vim in case of NVIM
 nnoremap <Leader>ev :edit $HOME/.vim/vimrc<CR>
-nnoremap <Leader>en :edit $HOME/.config/nvim/init.vim<CR>
 nnoremap <Leader>sv :source $HOME/.vim/vimrc<CR>
-nnoremap <Leader>sn :source $HOME/.config/nvim/init.vim<CR>
-nnoremap <Leader>eb :edit $HOME/.bashrc<CR>
-nnoremap <Leader>sb :!source $HOME/.bashrc<CR>
-nnoremap <Leader>wr :wa<CR>
 
-" FZF
-nnoremap <C-p> :FZF<CR>
-let g:fzf_action = {
-  \ 'ctrl-t': 'tab split',
-  \ 'ctrl-s': 'split',
-  \ 'ctrl-v': 'vsplit'
-  \}
+" move lines up / down
+" nnoremap <silent> <A-j> :move .+1<CR>==
+" nnoremap <silent> <A-k> :move .-2<CR>==
+" inoremap <silent> <A-j> <Esc>:move .+1<CR>==gi
+" inoremap <silent> <A-k> <Esc>:move .-2<CR>==gi
+" vnoremap <silent> <A-j> :move '>+1<CR>gv=gv
+" vnoremap <silent> <A-k> :move '<-2<CR>gv=gv
 
 " Terminal size
 nnoremap <Leader>rs :set lines=20 columns=85<CR>
@@ -465,6 +410,43 @@ function! <SID>StripTrailingWhitespaces()
   call cursor(l, c)
 endfunction
 
+"----
+" IPA
+"
+" shorthands
+
+map! <C-v>z ʒ
+map! <C-v>j dʒ
+map! <C-v>v ð
+map! <C-v>f θ
+map! <C-v>n ŋ
+
+map! <C-v>s ʃ
+map! <C-v>c tʃ
+map! <C-v>ah ɑː
+map! <C-v>oh ɒ
+map! <C-v>ae æ
+
+map! <C-v>ai aɪ
+map! <C-v>au aʊ
+map! <C-v>er ɛ
+map! <C-v>ei eɪ
+map! <C-v>ih ɪ
+
+map! <C-v>ie ɪə
+map! <C-v>ee iː
+map! <C-v>ou oʊ
+map! <C-v>oa ɔː
+map! <C-v>oi ɔɪ
+
+map! <C-v>uu ʊ
+map! <C-v>oo uː
+map! <C-v>uh ʌ
+map! <C-v>eh ə
+map! <C-v>ea eə
+
+map! <C-v>eu əʊ
+
 "------------------------------------------------------------------------------
 " Autocommands
 " 
@@ -472,36 +454,47 @@ endfunction
 
 " Only do this part when compiled with support for autocommands
 if has("autocmd")
-  " Enable filetype detection
-  filetype on
 
-  " Syntax of these languages is fussy over tabs Vs spaces
-  autocmd FileType make setlocal ts=8 sts=8 sw=8 noet
-  autocmd FileType yaml setlocal ts=2 sts=2 sw=2 et
+  " Put all autocmds in some augroup and use au! to clear the group.
+  augroup vimrc_autocmds
+    au!
 
-  " Customisations based on house-style (arbitrary)
-  autocmd FileType html setlocal ts=4 sts=4 sw=4 et
-  autocmd FileType css setlocal ts=4 sts=4 sw=4 et
-  autocmd FileType javascript setlocal ts=4 sts=4 sw=4 et
-  autocmd FileType python setlocal ts=4 sts=4 sw=4 et
-  autocmd FileType vim setlocal ts=2 sts=2 sw=2 et
-  autocmd Filetype cpp setlocal ts=4 sts=4 sw=4 et cindent
-  autocmd Filetype c setlocal ts=4 sts=4 sw=4 et cindent
+    " Enable filetype detection
+    filetype on
 
-  " Treat .rss files as XML
-  autocmd BufNewFile,BufRead *.rss setfiletype xml
-  " Treat .pl files as Prolog (default is Perl)
-  autocmd BufNewFile,BufRead *.pl setfiletype prolog
+    " Syntax of these languages is fussy over tabs Vs spaces
+    autocmd FileType make setlocal ts=8 sts=8 sw=8 noet
+    autocmd FileType yaml setlocal ts=2 sts=2 sw=2 et
 
-  " Disables auto commenting on newline:
-  autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+    " Customisations based on house-style (arbitrary)
+    autocmd FileType html setlocal ts=4 sts=4 sw=4 et inde=
+    autocmd FileType css setlocal ts=4 sts=4 sw=4 et
+    autocmd FileType javascript setlocal ts=4 sts=4 sw=4 et
+    autocmd FileType python setlocal ts=4 sts=4 sw=4 et
+    autocmd FileType vim setlocal ts=2 sts=2 sw=2 et
+    autocmd Filetype cpp setlocal ts=4 sts=4 sw=4 et cindent
+    autocmd Filetype c setlocal ts=4 sts=4 sw=4 et cindent
+    autocmd Filetype asm setlocal ts=8 sts=8 sw=8 et
 
-  if v:version > 703 || v:version == 703 && has("patch541")
-    set formatoptions+=j " Delete comment character when joining commented lines
-  endif
+    " Treat .rss files as XML
+    autocmd BufNewFile,BufRead *.rss setfiletype xml
+    " Treat .pl files as Prolog (default is Perl)
+    autocmd BufNewFile,BufRead *.pl setfiletype prolog
 
-  " Trim certain files from trailing whitespaces
-  autocmd BufWritePre *.py,*.js :call <SID>StripTrailingWhitespaces()
+    " Disables auto commenting on newline:
+    autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+
+    if v:version > 703 || v:version == 703 && has("patch541")
+      set formatoptions+=j " Delete comment character when joining commented lines
+    endif
+
+    " Trim certain files from trailing whitespaces
+    autocmd BufWritePre *.py,*.js :call <SID>StripTrailingWhitespaces()
+
+    " Use transparent background
+    hi Normal ctermbg=NONE
+    " hi Normal guibg=NONE ctermbg=NONE
+  augroup END
 endif
 
 "------------------------------------------------------------

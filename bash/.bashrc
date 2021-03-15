@@ -60,6 +60,9 @@ fi
 # if [ "$color_prompt" = yes ]; then
 #    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\W\[\033[00m\]$ '
 
+###############################################################################
+#                             CUSTOM SHELL PROMPT                             #
+###############################################################################
 if [ "$color_prompt" = yes ]; then
     PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\W\[\033[00m\]$ '
 else
@@ -154,7 +157,7 @@ export LEETCODE="$COMPROG/leetcode"
 alias rm="rm -i"
 
 # man settings
-export MANPAGER='nvim +Man!'
+# export MANPAGER='nvim +Man!'
 # export MANWIDTH=999
 
 # Git aliases
@@ -214,33 +217,8 @@ alias _vw="cd $VIMWIKI"
 # alias ipython="ipython3"
 # alias pip="pip3"
 
-alias xup="xrdb ~/.Xresources" # update Xresources
-
-# colors in the manual {{{
-# 31 red
-# 32 green
-# 33 yellow
-# 34 blue
-# 35 purple
-# 36 cyan
-# export LESS_TERMCAP_mb=$'\e[1;32m'
-# export LESS_TERMCAP_md=$'\e[1;32m'
-# export LESS_TERMCAP_me=$'\e[0m'
-# export LESS_TERMCAP_se=$'\e[0m'
-# export LESS_TERMCAP_so=$'\e[01;33m'
-# export LESS_TERMCAP_ue=$'\e[0m'
-# export LESS_TERMCAP_us=$'\e[1;4;31m'
-# }}}
-
-# powerline-shell {{{
-# function _update_ps1() {
-#     PS1=$(powerline-shell $?)
-# }
-#
-# if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
-#     PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
-# fi
-# }}}
+# update Xresources
+alias xup="xrdb ~/.Xresources" 
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
