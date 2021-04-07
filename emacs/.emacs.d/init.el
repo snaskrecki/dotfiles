@@ -21,11 +21,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(fill-column 80)
- '(org-directory "~/Dropbox/orgwiki")
- '(org-agenda-files 
-    (directory-files-recursively "~/Dropbox/orgwiki" "\\.org$")
-    '("~/tmp/org-tut/2.org" "~/tmp/org-tut/4.org")))
+ '(fill-column 80))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -54,10 +50,27 @@
 (global-set-key (kbd "C-c l") 'org-store-link)
 (global-set-key (kbd "C-c a") 'org-agenda)
 (global-set-key (kbd "C-c c") 'org-capture)
+;; (global-set key (kbd "C-c b") 'org-switchb)
 
 ;; extra to-do keywords
 (setq org-todo-keywords
-  '((sequence "TODO" "IN-PROGRESS" "WAITING" "DONE")))
+  '((sequence "TODO" "IN-PROGRESS" "WAITING" "CANCELLED" "DONE")))
+
+(setq org-directory "~/Dropbox/org/")
+
+;; add all the files located in subdirs of 'org-directory to the
+;; 'org-agenda-files, there is a problem with new files. fix by adding on save
+;; hook?  source:
+;; https://stackoverflow.com/questions/11384516/how-to-make-all-org-files-under-a-folder-added-in-agenda-list-automatically
+(setq org-agenda-files 
+      (seq-filter (lambda(x) (not (string-match "/excluded/" (file-name-directory x)))) 
+       (directory-files-recursively org-directory "\\.org$")))
+					;
+;; auxiliary directory for captured notes
+(setq org-capture-directory (concat (file-name-as-directory org-directory) "capture"))
+
+;; defines where captured notes should go
+(setq org-default-notes-file (concat (file-name-as-directory org-capture-directory) "tasks.org"))
 
 ;; ****************************************************************************
 ;; COLOR THEME
@@ -86,11 +99,11 @@
 (setq auto-save-default nil)
 
 ;; enable line numbers
-(when (version<= "26.0.50" emacs-version )
-  (global-display-line-numbers-mode))
+;; (when (version<= "26.0.50" emacs-version )
+;;   (global-display-line-numbers-mode))
 
 ;; relative line numbers
-(setq display-line-numbers 'relative)
+;; (setq display-line-numbers 'relative)
 
 ;; turn off bells
 (setq ring-bell-function 'ignore)
@@ -101,7 +114,7 @@
       (setq initial-frame-alist
             '(
               (tool-bar-lines . 0)
-              (width . 88) ; chars
+              (width . 85) ; chars
               (height . 43) ; lines
               (left . 50)
               (top . 50)
@@ -109,7 +122,7 @@
       (setq default-frame-alist
             '(
               (tool-bar-lines . 0)
-              (width . 88)
+              (width . 85)
               (height . 43)
               (left . 50)
               (top . 50)
@@ -121,5 +134,13 @@
 ;; set the default font for new frames
 (add-to-list 'default-frame-alist '(font . "DejaVu Sans Mono-13"))
 
-;; open on startup
-(find-file "~/Dropbox/orgwiki/misc.org") 
+;; open init file
+(global-set-key (kbd "C-c i") 
+                (lambda () (interactive) (find-file "~/.emacs.d/init.el")))
+
+;; open main org file
+(global-set-key (kbd "C-c o") 
+                (lambda () (interactive) (find-file "~/Dropbox/org/misc.org")))
+
+(delete-selection-mode 1)
+(put 'upcase-region 'disabled nil)
